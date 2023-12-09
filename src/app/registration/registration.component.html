@@ -1,0 +1,58 @@
+
+<div class="wrapper">
+    <div class="inner">
+        <img src="assets/img/man.png" alt="" class="image-1">
+        <form [formGroup]="UserForm" (ngSubmit)="onSubmit()">
+            <h3>انشاء حساب جديد</h3>
+            <div class="form-holder">
+                <input type="text" class="form-control" placeholder="اسم المستخدم"
+    [class.is-invalid]="username?.invalid &&username?.touched" formControlName="username"
+    >
+            </div>
+  <div  *ngIf="username?.errors&&username?.touched">
+    <small *ngIf="username?.errors?.['required']"> يجيب ادخال اسم المستخدم</small>
+    </div>
+  <div class="form-holder ">
+                <input type="text" class="form-control" placeholder="الاسم رباعي"
+    [class.is-invalid]="name?.invalid &&name?.touched" formControlName="name">
+            </div>
+  <div  *ngIf="name?.errors&&name?.touched">
+    <small *ngIf="name?.errors?.['required']">قم بادخال الاسم الرباعي</small>
+    </div>
+            <div class="form-holder">
+                <input type="text" class="form-control" placeholder="رقم الموبايل"
+    [class.is-invalid]="phone?.invalid &&phone?.touched" formControlName="phone">
+            </div>
+  <div  *ngIf="phone?.errors&&phone?.touched">
+    <small *ngIf="phone?.errors?.['required']">قم بادخال رقم الجوال</small>
+    </div>
+            <div class="form-holder">
+                <input type="email" class="form-control" placeholder="الايميل"
+    [class.is-invalid]="email?.invalid &&email?.touched" formControlName="email">
+            </div>
+  <div  *ngIf="email?.errors&&email?.touched">
+    <small *ngIf="email?.errors?.['required']">قم بادخال ايميلك </small>
+    </div>
+            <div class="form-holder">
+    <!-- <input (change)="uploadPhoto($event)" -->
+<input
+     class="form-control form-control-sm" id="formFileSm" type="file"
+    [class.is-invalid]="image?.invalid &&image?.touched" formControlName="image"/>
+            </div>
+
+            <div class="form-holder">
+                <input type="password" class="form-control" placeholder="الرقم السري"
+    [class.is-invalid]="password?.invalid &&password?.touched" formControlName="password">
+            </div>
+  <div  *ngIf="password?.errors&&password?.touched">
+    <small *ngIf="password?.errors?.['required']">قم بادخال رقم سري يتكون من ارقام وحروف و$ </small>
+    </div>
+            <button type="submit" routerLink="/login" class="bg-danger">
+                <span>Register</span>
+            </button>
+            <a class="my-3" style="margin-bottom:-100px;" routerLink="/login">هل لديك اكونت؟</a>
+        </form>
+        <img src="assets/img/image-2.png" alt="" class="image-2">
+    </div>
+
+</div>

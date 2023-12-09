@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Bootstrap Table with Filter by Day Feature</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nur+Syamsi">
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <div class="container-lg">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div  class="col-sm-8 my-2"><h1  id="Tableheading">جدول المحاضر <b></b></h1></div>
+
+          </div>
+        </div>
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>المرحله</th>
+              <th>الماده</th>
+              <th>اليوم</th>
+              <th>التاريخ</th>
+              <th>الوقت</th>
+            </tr>
+          </thead>
+          <!-- ... (existing code) ... -->
+<tbody>
+  <tr *ngFor="let row of tableData">
+    <td>
+      <span *ngIf="!row.isEditing">{{ row.stage }}</span>
+      <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.stage" class="form-control" />
+    </td>
+    <td>
+      <span *ngIf="!row.isEditing">{{ row.subject }}</span>
+      <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.subject" class="form-control" />
+    </td>
+    <td>
+      <span *ngIf="!row.isEditing">{{ row.day }}</span>
+      <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.day" class="form-control" />
+    </td>
+    <td>
+      <span *ngIf="!row.isEditing">{{ row.date }}</span>
+      <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.date" class="form-control" />
+    </td>
+    <td>
+      <a class="add" title="Add" data-toggle="tooltip" *ngIf="row.isAddMode" (click)="addOrUpdateRow(row)"><i class="material-icons">&#xE03B;</i></a>
+      <a class="edit" title="Edit" data-toggle="tooltip" *ngIf="!row.isEditing" (click)="startEditing(row)"><i class="material-icons">&#xE254;</i></a>
+      <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteRow(row)"><i class="material-icons">&#xE872;</i></a>
+    </td>
+  </tr>
+</tbody>
+<!-- ... (existing code) ... -->
+
+        </table>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

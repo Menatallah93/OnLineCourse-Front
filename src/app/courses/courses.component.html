@@ -1,0 +1,68 @@
+ <!-- Courses Start -->
+ <div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">دروس</h6>
+            <h1 class="mb-5">الكيمياء</h1>
+        </div>
+
+
+        <div>
+            <h1 class="mb-5"> استاذ: احمد محمد</h1>
+        </div>
+
+        <div class="row g-4 justify-content-center align-items-stretch">
+            <div class="col-lg-3 col-md-6 wow fadeInUp" *ngFor="let course of displayedCourses; let i = index" data-wow-delay="0.1s">
+                <div class="course-item bg-light d-flex flex-column h-100">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid" src="/assets/img/course-1.jpg" alt="">
+                        <div class="w-100 d-flex justify-content-center align-items-center position-absolute start-0 mb-4" style="bottom: 20%;">
+                            <a > 
+                                <!-- (click)="handleClick()" -->
+                                <svg xmlns="http://www.w3.org/2000/svg" height="5em" viewBox="0 0 512 512" style="cursor: pointer;">
+                                    <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                    <style>svg{fill:#ffffff}</style>
+                                    <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c7.6-4.2 16.8-4.1 24.3 .5l144 88c7.1 4.4 11.5 12.1 11.5 20.5s-4.4 16.1-11.5 20.5l-144 88c-7.4 4.5-16.7 4.7-24.3 .5s-12.3-12.2-12.3-20.9V168c0-8.7 4.7-16.7 12.3-20.9z"/>
+                                </svg>
+                            </a>
+                        </div>
+                        
+                    </div>
+                    <div class="p-4 pb-0 flex-grow-1">                
+                        <h5 class="mb-4">{{course.title}}</h5>
+                    </div>
+                    <div class="m-4 mt-0 d-flex justify-content-end align-items-end">
+                        <button class="btn btn-primary">تحميل ملف الدرس</button>
+                    </div>
+                    <div class="d-flex border-top">
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary mx-2"></i>أ/أحمد محمد</small>
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary mx-2"></i>2.00ساعه</small>
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-user text-primary mx-2"></i>30 طالب</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+<!-- Pagination -->
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center mt-4">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="onPageChange(currentPage - 1)" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item" *ngFor="let page of totalPagesArray()" [class.active]="currentPage === page">
+        <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="onPageChange(currentPage + 1)" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+</div>
+</div>
+<!-- Courses End -->

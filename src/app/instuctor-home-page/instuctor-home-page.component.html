@@ -1,0 +1,57 @@
+<div class="horizontal-menu">
+    <nav class="navbar top-navbar col-lg-12 col-12 p-0">
+      <div class="container">
+        
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+         
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="horizontal-menu-toggle">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <nav class="bottom-navbar">
+      <div class="container">
+        <ul class="nav page-navigation ">
+          <li class="nav-item" (click)='navigate("material")'>
+            <a class="nav-link">
+              <i class="mdi mdi-contacts menu-icon"></i>
+              <span class="menu-title mx-2">المواد</span>
+            </a>
+          </li>
+
+          <li class="nav-item" (click)='navigate("addcourse")'>
+            <a class="nav-link">
+              <i class="mdi mdi-chart-bar menu-icon"></i>
+              <span class="menu-title mx-2">أضافة مادة</span>
+            </a>
+          </li>
+
+          <li class="nav-item" (click)='navigate("instractortable")'>
+            <a class="nav-link">
+              <i class="mdi mdi-table-large menu-icon"></i>
+              <span class="menu-title mx-2">الجدول الاسبوعي </span>
+            </a>
+          </li>
+
+          
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div *ngIf="navlink === 'request'">
+    <app-request></app-request>
+  </div>
+
+  <div *ngIf="navlink === 'addcourse'">
+    <app-add-courses></app-add-courses>
+  </div>
+  
+  <div *ngIf="navlink === 'instractortable'">
+    <app-instractor-table></app-instractor-table>
+  </div>
+  
+  <div *ngIf="navlink === 'material'">
+    <app-add-material></app-add-material>
+  </div>

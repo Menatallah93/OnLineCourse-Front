@@ -1,0 +1,55 @@
+/* Card deck container */
+.card-deck {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px; /* Adjust margin as needed */
+}
+
+/* Individual card styles */
+.card {
+  width: 18rem; /* Set a fixed width for the cards */
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Card image overlay */
+.view.overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.view.overlay img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.view.overlay:hover img {
+  transform: scale(1.1);
+}
+
+/* Card title and text styles */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1rem;
+}
+
+/* Button style */
+.btn-light-blue {
+  background-color: #00bcd4;
+  color: #ffffff;
+}
+
+/* Adjust button size if needed */
+.btn-light-blue.btn-md {
+  padding: 8px 16px;
+  font-size: 1rem;
+}
