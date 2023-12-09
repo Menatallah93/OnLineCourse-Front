@@ -52,6 +52,7 @@ const routes: Routes = [
  {path:"material",component:AddMaterialComponent},
  {path: "addcourse",component :AddCoursesComponent},
  {path:"instractortable",component:InstractorTableComponent},
+ // Maroooo
 ];
 
 @NgModule({
