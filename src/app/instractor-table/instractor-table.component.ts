@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-instractor-table',
@@ -6,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./instractor-table.component.scss']
 })
 export class InstractorTableComponent  {
-  
 
+  constructor(private route:Router){
 
+  }
   tableData: any[] = [
     { stage: 'الثانويه', subject: 'الانجليزيه', day: 'الثلاثاء', date: 'العاشره صباحا' },
     { stage: 'الاعداديه', subject: 'الانجليزيه', day: 'الاربعاء', date: 'الخامسه عصرا' },
@@ -31,6 +33,10 @@ export class InstractorTableComponent  {
       row.isEditing = false;
     } 
   }
+
+  navigateTo(studentID: number) {
+    this.route.navigate(['/courses']);
+}
 
   deleteRow(row: any) {
     const index = this.tableData.indexOf(row);

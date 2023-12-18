@@ -16,24 +16,6 @@
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="daySelect2">اختار المرحلة :</label>
-                <select class="form-control" id="daySelect2" name="day">
-                    <option>الصف الاول</option>
-                    <option>الصف الثاني </option>
-                    <option>الصف الثالث</option>
-                    <option>الصف الرابع</option>
-                    <option>الصف الخامس</option>
-                    <option>الصف السادس</option>
-                    <option>الصف السابع</option>
-                    <option>الصف الثامن</option>
-                    <option>الصف التاسع</option>
-                    <option>الصف العاشر</option>
-                    <option>الصف الحادي عشر</option>
-                    <option>الصف الثاني عشر</option>
-                </select>
-            </div>
-
             <div class="form-group" [formGroup]="myForm">
                 <div class="row" formArrayName="rows" *ngFor="let row of rowsArray.controls; let i = index">
                     <div class="form-group col-md-6 col-lg-6">
