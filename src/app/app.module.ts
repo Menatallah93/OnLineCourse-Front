@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -10,7 +9,6 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './registration/registration.component';
 import { ProgranComponent } from './program/program.component';
-import { SemesterComponent } from './semester/semester.component';
 import { JoinCourseComponent } from './join-course/join-course.component';
 import { CancellationPolicyComponent } from './cancellation-policy/cancellation-policy.component';
 import { DashBoardComponent } from './dash-board/dash-board.component';
@@ -27,8 +25,10 @@ import { StudentOrInstractorComponent } from './student-or-instractor/student-or
 import { GradeComponent } from './grade/grade.component';
 import { RequestComponent } from './request/request.component';
 import { InstuctorHomePageComponent } from './instuctor-home-page/instuctor-home-page.component';
-import { AddMaterialComponent } from './add-material/add-material.component';
+
 import { HttpClientModule } from '@angular/common/http';
+
+
 
 
 @NgModule({
@@ -36,7 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     RegistrationComponent,
     ProgranComponent,
-    SemesterComponent,
+
     JoinCourseComponent,
     LandingPageComponent,
     HomePageComponent,
@@ -58,15 +58,18 @@ import { HttpClientModule } from '@angular/common/http';
     GradeComponent,
     RequestComponent,
     InstuctorHomePageComponent,
-    AddMaterialComponent
+
   ],
+
   imports: [
-    BrowserModule, 
-    AppRoutingModule, 
+    BrowserModule,
+    AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
   ],
+
+
   providers: [],
   bootstrap: [AppComponent],
 })
