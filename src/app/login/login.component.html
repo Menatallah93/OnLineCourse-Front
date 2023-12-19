@@ -4,17 +4,17 @@
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <form [formGroup]="UserForm" (ngSubmit)="onSubmit()">
           <div
-            class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start"
-          ></div>
+            class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+        </div>
 
           <!-- Email input -->
           <div class="form-outline mb-4">
             <label class="form-label" for="form3Example3">اسم المستخدم</label>
             <input
-              type="email"
-              id="form3Example3"
+              type="userName"
               class="form-control form-control-lg"
-              placeholder="اسم المستخدم"
+              placeholder="اسم المستخدم" [class.is-invalid]="username?.invalid &&username?.touched" 
+              formControlName="userName"
             />
           </div>
 
@@ -23,36 +23,17 @@
             <label class="form-label" for="form3Example4">الرقم السري</label>
             <input
               type="password"
-              id="form3Example4"
               class="form-control form-control-lg"
-              placeholder="ادخل الرقم السري"
-            />
-          </div>
-
-          <div class="d-flex justify-content-between align-items-center">
-            <!-- <a href="#!" class="text-body">Forgot password?</a> -->
-            <!-- Checkbox -->
-            <div class="form-check mb-0">
-              <input
-                class="form-check-input me-2"
-                type="checkbox"
-                value=""
-                id="form2Example3"
-              />
-              <label class="form-check-label" for="form2Example3">
-                تذكرني
-              </label>
-            </div>
+              placeholder="الرقم السري"
+              [class.is-invalid]="password?.invalid &&password?.touched" formControlName="password" />
           </div>
 
           <div class="text-center text-lg-end mt-4 pt-2">
-            <a
-              type="button"
+            <button
+              type="submit"
               class="btn btn-danger btn-lg"
-              style="padding-left: 2.5rem; padding-right: 2.5rem"
-              routerLink="/home"
-              >دخول</a
-            >
+              style="padding-left: 2.5rem; padding-right: 2.5rem" >دخول </button>
+
             <p class="small fw-bold mt-2 pt-1 mb-0">
               هل لديك حساب
               <a routerLink="/registration" class="link-danger"

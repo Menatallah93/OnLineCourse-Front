@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthorizeService } from '../Servise/authorize.service';
+import { IUserRegister } from '../Shared-Interfase/IUserRegister';
 
 @Component({
   selector: 'app-registration',
@@ -9,17 +11,16 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent {
   UserForm: FormGroup;
-  selectedFile!: File;
-  photo:string="";
-  constructor(private fb: FormBuilder,private rout:Router)
+  enabled:boolean = false;
+  
+  constructor(private fb: FormBuilder,private rout:Router, private auth : AuthorizeService)
  {
-      this.UserForm = this.fb.group({
-        username: ['', [Validators.required]],
-        password: ['', [Validators.required]],
-        image: ['', [Validators.required]],
-        name: ['', [Validators.required]],
-        phone: ['', [Validators.required]],
-        email: ['', [Validators.required]],
+  this.UserForm = this.fb.group({
+    username: ['', Validators.required],
+    name: ['', Validators.required],
+    phone: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required],
   });
 }
 get username() {
@@ -40,36 +41,32 @@ get email() {
 get phone() {
   return this.UserForm.get('phone');
 }
-// uploadPhoto(event: any) {
-//   this.imgserv.onFileSelected(event);
-//   this.selectedFile = event.target.files[0];
-//   if (this.selectedFile) {
-//     const formData = new FormData();
-//     formData.append('file', this.selectedFile);
-//     this.imgserv.UploadImage(formData).subscribe({
-//       next: data => {
-//         this.photo=data.pathImage
-//         this.UserForm.patchValue({
-//           image: data.pathImage
-//         })
-//       },
-//       error: err => console.error('Error during subscription:', err)
-//     });
-//   }}
+
 onSubmit()
 {
-  // const Newuser:IUserRegister 
-  // = {
-  //     name: this.UserForm.value.name,
-  //     password:this.UserForm.value.password, 
-  //     phoneNumber: this.UserForm.value.phone,
-  //     photo:this.photo,
-  //     email: this.UserForm.value.email,
-  //     username:this.UserForm.value.username 
-  //   };
+  const newUser:IUserRegister  = {
+      name: this.UserForm.value.name,
+      userName:this.UserForm.value.username, 
+      email: this.UserForm.value.email,
+      phone: this.UserForm.value.phone,
+      password:this.UserForm.value.password,
+      role: this.auth.userRole,
+    };
+
+    console.log(this.UserForm.value);
+    console.log(newUser);
+
   if(this.UserForm.valid)
   {
-  
+    this.auth.register(newUser).subscribe((info) =>{
+      if(info.message == "Success")
+      {
+        this.rout.navigate(['/login']);
+      }else{
+        this.enabled = true;
+      }
+
+    })
     
   }
 }
