@@ -19,10 +19,10 @@ ngOnInit(){
   console.log(this.instructorID);
   this.instr.getInstructorByID(this.instructorID).subscribe((info) =>{
   console.log(info);
-  if(info.status == 0){
+  if(info.status === 0){
     this.statusFlag = 0;
   }
-  else if(info.status == 1 ){
+  else if(info.status === 1 ){
     this.statusFlag = 1;
   }
   else{

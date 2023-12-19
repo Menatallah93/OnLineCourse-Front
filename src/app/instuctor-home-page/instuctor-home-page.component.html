@@ -1,18 +1,10 @@
 <div class="horizontal-menu">
-  <nav class="navbar top-navbar col-lg-12 col-12 p-0">
-    <div class="container">
-      <div
-        class="navbar-menu-wrapper d-flex align-items-center justify-content-end"
-      >
-        <button
-          class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
-          type="button"
-          data-toggle="horizontal-menu-toggle"
-        >
-          <span class="mdi mdi-menu"></span>
-        </button>
+    <div class="">
+      <div class="navbar-menu-wrapper d-flex align-items-center my-4 justify-content-end" >
 
-        <nav class="bottom-navbar" *ngIf="statusFlag == 1">
+      </div>
+
+        <nav class="bottom-navbar" *ngIf="statusFlag === 1">
           <div class="container">
             <ul class="nav page-navigation">
               <li class="nav-item" (click)="navigate('material')">
@@ -51,6 +43,5 @@
       <div *ngIf="navlink === 'instractortable'">
         <app-instractor-table></app-instractor-table>
       </div>
-    </div>
-  </nav>
+    
 </div>
