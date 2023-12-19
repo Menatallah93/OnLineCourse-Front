@@ -49,7 +49,6 @@ const routes: Routes = [
  {path:"grades",component:GradeComponent},
  {path:"request",component:RequestComponent},
  {path:"inshomepage",component:InstuctorHomePageComponent},
-
  {path: "addcourse",component :AddCoursesComponent},
  {path:"instractortable",component:InstractorTableComponent},
  // Maroooooooooo
