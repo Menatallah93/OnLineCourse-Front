@@ -7,7 +7,7 @@ import { JoinCourseComponent } from './join-course/join-course.component';
 import { LoginComponent } from './login/login.component';
 import { ProgranComponent } from './program/program.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { SemesterComponent } from './semester/semester.component';
+
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { CancellationPolicyComponent } from './cancellation-policy/cancellation-policy.component';
 import { DashBoardComponent } from './dash-board/dash-board.component';
@@ -23,7 +23,7 @@ import { RequestComponent } from './request/request.component';
 import { InstuctorHomePageComponent } from './instuctor-home-page/instuctor-home-page.component';
 import { AddCoursesComponent } from './add-courses/add-courses.component';
 import { InstractorTableComponent } from './instractor-table/instractor-table.component';
-import { AddMaterialComponent } from './add-material/add-material.component';
+
 
 
 const routes: Routes = [
@@ -33,7 +33,7 @@ const routes: Routes = [
 {path: 'login',component:LoginComponent},
   {path: 'registration',component:RegistrationComponent},
   {path: 'program',component:ProgranComponent},
-  {path: 'semester',component:SemesterComponent},
+
   {path: 'joinUs',component:JoinCourseComponent},
   {path: 'privacy',component:PrivacyPolicyComponent},
   {path: 'profile',component:ProfileComponent},
@@ -49,7 +49,7 @@ const routes: Routes = [
  {path:"grades",component:GradeComponent},
  {path:"request",component:RequestComponent},
  {path:"inshomepage",component:InstuctorHomePageComponent},
- {path:"material",component:AddMaterialComponent},
+
  {path: "addcourse",component :AddCoursesComponent},
  {path:"instractortable",component:InstractorTableComponent},
  // Maroooooooooo

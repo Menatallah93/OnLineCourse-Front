@@ -6,7 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./join-course.component.scss']
 })
 export class JoinCourseComponent {
+  rows: any[] = []; // Array to store dynamically added rows
+
+  addRow() {
+    this.rows.push({});
 
 
-  
+}
 }

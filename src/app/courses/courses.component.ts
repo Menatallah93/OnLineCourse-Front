@@ -50,4 +50,10 @@ export class CoursesComponent {
   totalPagesArray(): number[] {
     return Array(this.totalPages).fill(0).map((_, index) => index + 1);
   }
+  itemList: number[] = [];
+
+  addItem() {
+
+    this.itemList.push(1);
+  }
 }
