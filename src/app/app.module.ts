@@ -28,6 +28,8 @@ import { GradeComponent } from './grade/grade.component';
 import { RequestComponent } from './request/request.component';
 import { InstuctorHomePageComponent } from './instuctor-home-page/instuctor-home-page.component';
 import { AddMaterialComponent } from './add-material/add-material.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -58,7 +60,13 @@ import { AddMaterialComponent } from './add-material/add-material.component';
     InstuctorHomePageComponent,
     AddMaterialComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule,FormsModule],
+  imports: [
+    BrowserModule, 
+    AppRoutingModule, 
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
