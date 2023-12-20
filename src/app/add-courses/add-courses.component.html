@@ -1,19 +1,14 @@
 <div class="container mt-5">
     <div class="card">
-        <form [formGroup]="fullData">
+        <form [formGroup]="fullData" onsubmit="submit()">
             <div class="form-group">
                 <label class="mb-2" for="daySelect1">اختر المادة :</label>
 
-                <select class="form-control" id="daySelect1" name="day1">
-                    <option>الرياضيات</option>
-                    <option>العلوم</option>
-                    <option>اللغه العربيه</option>
-                    <option>اللغه الانجليزية</option>
-                    <option>الدراسات الاجتماعية</option>
-                    <option>فيزياء</option>
-                    <option>الكيمياء</option>
-                    <option>الاحياء</option>
-                </select>
+                <div >
+                    <select class="form-control" id="daySelect1" formControlName="subjectId" name="day1" (change)="getSubjectName($event)">
+                        <option *ngFor="let sub of allSubject" [value]="sub.name" >{{sub.name}}</option>
+                    </select>
+                </div>
             </div>
 
             <div class="form-group" [formGroup]="myForm">
@@ -21,13 +16,14 @@
                     <div class="form-group col-md-6 col-lg-6">
                         <label for="daySelect">اختر اليوم</label>
                         <select class="form-control" formControlName="{{ i }}.day" required>
-                            <option>السبت</option>
-                            <option>الاحد</option>
-                            <option>الاثنين</option>
-                            <option>الثلاثاء</option>
-                            <option>الاربعاء</option>
-                            <option>الخميس</option>
-                            <option>الجمعه</option>
+                            <option>اختر اليوم</option>
+                            <option value="6">السبت</option>
+                            <option value="0">الاحد</option>
+                            <option value="1">الاثنين</option>
+                            <option value="2">الثلاثاء</option>
+                            <option value="3">الاربعاء</option>
+                            <option value="4">الخميس</option>
+                            <option value="5">الجمعه</option>
                         </select>
                     </div>
 
@@ -43,9 +39,7 @@
                     </div>
                 </div>
             </div>
-
-
-            <a type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleCalsultModal">Submit</a>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
