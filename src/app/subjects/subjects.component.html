@@ -1,0 +1,32 @@
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">اسم المادة</th>
+            <th scope="col">المرحله التعليميه</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of subjects">
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.name}}</td>
+            <td *ngIf="item.grade==1">جميع المراحل</td>
+            <td *ngIf="item.grade==2">المرحله الثانويه</td>
+
+            <td>
+                <div style="display: flex; align-items: center;">
+                    <a routerLink="/editubject/{{item.id}}"  style="cursor: pointer;">
+                        <i class='fas fa-pen' style='font-size:18px;'></i>        
+
+                    </a>
+                     &nbsp; &nbsp;&nbsp;&nbsp;
+
+                    <i (click)="DeleteSubject(item.id)" class="material-icons" style="font-size:24px;cursor: pointer;; color:red; margin-left: 5px;">delete</i>
+                </div>
+                </tr>
+       
+        </tbody>
+      </table>
+</div>

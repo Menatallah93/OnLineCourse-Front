@@ -27,6 +27,8 @@ import { RequestComponent } from './request/request.component';
 import { InstuctorHomePageComponent } from './instuctor-home-page/instuctor-home-page.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { AddSubjectComponent } from './add-subject/add-subject.component';
+import { SubjectsComponent } from './subjects/subjects.component';
 
 
 
@@ -58,6 +60,8 @@ import { HttpClientModule } from '@angular/common/http';
     GradeComponent,
     RequestComponent,
     InstuctorHomePageComponent,
+    AddSubjectComponent,
+    SubjectsComponent,
 
   ],
 

@@ -23,6 +23,8 @@ import { RequestComponent } from './request/request.component';
 import { InstuctorHomePageComponent } from './instuctor-home-page/instuctor-home-page.component';
 import { AddCoursesComponent } from './add-courses/add-courses.component';
 import { InstractorTableComponent } from './instractor-table/instractor-table.component';
+import { AddSubjectComponent } from './add-subject/add-subject.component';
+import { SubjectsComponent } from './subjects/subjects.component';
 
 
 
@@ -51,6 +53,11 @@ const routes: Routes = [
  {path:"inshomepage",component:InstuctorHomePageComponent},
  {path: "addcourse",component :AddCoursesComponent},
  {path:"instractortable",component:InstractorTableComponent},
+ {path:"addsubject",component:AddSubjectComponent},
+ {path:"editubject/:id",component:AddSubjectComponent},
+
+ {path:"subjects",component:SubjectsComponent},
+
  // Maroooooooooo
  // Manoraaaa
 ];
