@@ -1,11 +1,11 @@
 export interface InstructorSubject{
     instructorId: string,
-    subjectId: number,
+    subjectId?: number,
     subjectName:string,
-    appointmentsDTOs: Appointment[]
+    appoinstmentDTOs: Appointment[]
 }
 
 export interface Appointment{
-    lectureDate: Date,
+    lectureDate: string,
     dayOfWeek : number,
 }

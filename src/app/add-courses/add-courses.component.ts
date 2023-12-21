@@ -4,8 +4,9 @@ import * as bootstrap from 'bootstrap';
 import { ElementRef } from '@angular/core';
 import { SubjectService } from '../Servise/subject.service';
 import { ISubject } from '../Shared-Interfase/ISubject';
-import { InstructorSubject } from '../Shared-Interfase/InstructorSubject';
+import { Appointment, InstructorSubject } from '../Shared-Interfase/InstructorSubject';
 import { AuthorizeService } from '../Servise/authorize.service';
+import { InstructorService } from '../Servise/instructor.service';
 
 
 @Component({
@@ -15,72 +16,63 @@ import { AuthorizeService } from '../Servise/authorize.service';
 })
 
 export class AddCoursesComponent {  
-  myForm!: FormGroup;
+   myForm!: FormGroup;
   fullData!: FormGroup;
   allSubject: ISubject[] = [];
-  subject!: string;
+  subject !: ISubject 
+  daytime : Appointment[] = [{
+    lectureDate : '',
+    dayOfWeek: 0,
+  }];
 
-  constructor(private fb: FormBuilder, private sub: SubjectService, private auth: AuthorizeService, private cdr: ChangeDetectorRef) {
+  constructor(private fb: FormBuilder, private sub: SubjectService, private auth: AuthorizeService
+    , private cdr: ChangeDetectorRef, private ins:InstructorService) {
     this.fullData = this.fb.group({
       instructorId: [this.auth.getTokenID(), [Validators.required]],
       subjectId: ['', [Validators.required]],
       subjectName: ['', [Validators.required]],
       appoinstmentDTOs: this.fb.array([]),
     });
-  }
-
-  get subjectName() {
-    return this.fullData.get('subjectName');
+    this.loadSubjects();
   }
 
   ngOnInit() {
-    this.myForm = this.fb.group({
-      rows: this.fb.array([this.createRow()])
-    });
-
-    this.sub.GetAll().subscribe((info) => {
-      this.allSubject = info;
-    });
+    
+    this.loadSubjects();
+  }
+  
+  loadSubjects() {
+    if (!this.allSubject.length) {
+      this.sub.GetAll().subscribe((info) => {
+        this.allSubject = info;
+      });
+    }
+  }
+  
+  createRow() {
+    this.daytime.push({
+      lectureDate : '',
+      dayOfWeek: 0,
+    })
   }
 
-  get rowsArray() {
-    return this.myForm.get('rows') as FormArray;
-  }
 
-  createRow(): FormGroup {
-    return this.fb.group({
-      day: new FormControl(''),
-      time: new FormControl(''),
-    });
-  }
-
-  addRow() {
-    this.rowsArray.push(this.createRow());
-    this.cdr.detectChanges();
-  }
-
-  getSubjectName(event: Event) {
-    const selectedValue = (event.target as HTMLSelectElement).value;
-    this.subject = selectedValue;
-  }
 
   submit() {
-    const appointments = this.rowsArray.controls.map((row) => {
-      return {
-        lectureDate: new Date(), // Replace with the actual date
-        dayOfWeek: row.get('day')?.value,
-      };
-    });
-  
     const instructorsubject: InstructorSubject = {
       instructorId: this.auth.getTokenID(),
-      subjectId: this.fullData.value.subjectId,
-      subjectName: this.fullData.value.subjectName,
-      appointmentsDTOs: appointments, // Corrected property name
+      subjectId: this.subject.id,
+      subjectName: this.subject.name,
+      appoinstmentDTOs: this.daytime,
     };
-  
+
+
     console.log('InstructorSubject:', instructorsubject);
-    // Now you can see the result in the console
+
+    this.ins.addInstructorsubject(instructorsubject).subscribe({
+        next: data=> console.log("add susseccs :" + data),
+        error: err=>console.log(err)
+    })
   }
 
 }
