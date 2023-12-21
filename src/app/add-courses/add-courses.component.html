@@ -1,39 +1,38 @@
 <div class="container mt-5">
     <div class="card">
-        <form [formGroup]="fullData" onsubmit="submit()">
+        <form (ngSubmit)="submit()">
             <div class="form-group">
-                <label class="mb-2" for="daySelect1">اختر المادة :</label>
+                <label class="mb-2" for="subject">اختر المادة :</label>
 
                 <div >
-                    <select class="form-control" id="daySelect1" formControlName="subjectId" name="day1" (change)="getSubjectName($event)">
-                        <option *ngFor="let sub of allSubject" [value]="sub.name" >{{sub.name}}</option>
-                    </select>
+                    <select class="form-control" id="subject" [(ngModel)]="subject" name="subject">
+                        <option *ngFor="let sub of allSubject" [ngValue]="sub">{{ sub.name }}</option>
+                      </select>
                 </div>
             </div>
 
-            <div class="form-group" [formGroup]="myForm">
-                <div class="row" formArrayName="rows" *ngFor="let row of rowsArray.controls; let i = index">
+            <div class="form-group">
+                <div class="row" *ngFor="let row of daytime; let i = index">
                     <div class="form-group col-md-6 col-lg-6">
                         <label for="daySelect">اختر اليوم</label>
-                        <select class="form-control" formControlName="{{ i }}.day" required>
-                            <option>اختر اليوم</option>
-                            <option value="6">السبت</option>
-                            <option value="0">الاحد</option>
-                            <option value="1">الاثنين</option>
-                            <option value="2">الثلاثاء</option>
-                            <option value="3">الاربعاء</option>
-                            <option value="4">الخميس</option>
-                            <option value="5">الجمعه</option>
+                        <select class="form-control" name="day{{i}}" [(ngModel)]="row.dayOfWeek" required>
+                            <option value=0 >الاحد</option>
+                            <option value=1 >الاثنين</option>
+                            <option value=2 >الثلاثاء</option>
+                            <option value=3 >الاربعاء</option>
+                            <option value=4>الخميس</option>
+                            <option value=5 >الجمعه</option>
+                            <option value=6 >السبت</option>
                         </select>
                     </div>
 
                     <div class="form-group col-md-6 col-lg-5">
                         <label for="timeInput">اختر الوقت: </label>
-                        <input type="time" class="form-control" formControlName="{{ i }}.time" required>
+                        <input type="time" class="form-control" name="time{{i}}" [(ngModel)]="row.lectureDate" required>
                     </div>
 
                     <div class="col-md-6 col-lg-1">
-                        <button type="button" class="btn btn-primary mt-4" (click)="addRow()">
+                        <button type="button" class="btn btn-primary mt-4" (click)="createRow()">
                             <i class="fas fa-plus"></i>
                         </button>
                     </div>
