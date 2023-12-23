@@ -13,7 +13,3 @@ export interface ILogin{
     password :string,
 }
 
-export interface IInstructor{
-    name: string,
-    status :number,
-}

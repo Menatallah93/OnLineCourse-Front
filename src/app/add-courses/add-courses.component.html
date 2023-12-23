@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <div class="card">
-        <form (ngSubmit)="submit()">
+        <form (ngSubmit)="submit()" #courseForm="ngForm">
             <div class="form-group">
                 <label class="mb-2" for="subject">اختر المادة :</label>
 
@@ -38,21 +38,36 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleCalsultModal">Submit</button>
         </form>
     </div>
 
 </div>
 
-<div class="modal fade"  #exampleCalsultModal  id="exampleCalsultModal" tabindex="-1" aria-labelledby="exampleCalsultModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-body" style="padding-top: 40px;">
-          <div class="text-center">
-            <i class="fas fa-check-circle" style="font-size: 48px; color: green;"></i>
-            <h1 style="margin-top: 10px;">تم إضافة المادة بنجاح</h1>
+    <div *ngIf="isAdded" class="modal fade" id="exampleCalsultModal" tabindex="-1" aria-labelledby="exampleCalsultModalLabel" aria-hidden="true"
+      (hidden)="courseForm.form.markAsPristine()">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-body" style="padding-top: 40px;">
+              <div class="text-center">
+                <i class="fas fa-check-circle" style="font-size: 48px; color: green;"></i>
+                <h1 style="margin-top: 10px;">تم إضافة المادة بنجاح</h1>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+
+    <div *ngIf="!isAdded" class="modal fade" id="exampleCalsultModal" tabindex="-1" aria-labelledby="exampleCalsultModalLabel" aria-hidden="true">
+    
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-body" style="padding-top: 40px;">
+              <div class="text-center">
+                <i class="fas fa-times-circle" style="font-size: 48px; color: red;"></i>
+                <h1 style="margin-top: 10px;">لم يتم إضافة المادة</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
