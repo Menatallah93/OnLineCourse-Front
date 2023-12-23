@@ -1,15 +1,9 @@
-<link
-  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-  rel="stylesheet"
-/>
-<!-- Navbar Start -->
+
 <nav
   class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0"
 >
-  <a
-    routerLink="/pro-ject-core"
-    class="navbar-brand d-flex align-items-center px-4 px-lg-5"
-  >
+  <a routerLink="/pro-ject-core"
+    class="navbar-brand d-flex align-items-center px-4 px-lg-5" >
     <h2 class="m-0 text-primary">
       <i class="fa fa-book mx-3"></i>أكاديمية الخليج
     </h2>
@@ -41,65 +35,112 @@
 <div class="container wow fadeInUp" data-wow-delay="0.1s">
   <div class="row">
     <div class="col-md-4 col-xl-3">
-      <a routerLink="/joinUs">
+      <a (click)="getLevel('الصف الرابع')">
       <div class="card bg-c-blue order-card">
         <div class="card-block">
           <h2 class="text-right">
-            <i class="fa fa-credit-card f-left"></i><span>1</span>
+            <i class="fa fa-credit-card f-left"></i><span>4</span>
           </h2>
-          <span class="f-right">الصف الاول </span>
+          <span class="f-right">الصف الرابع </span>
         </div>
       </div>
       </a>
     </div>
     <div class="col-md-4 col-xl-3">
+      <a (click)="getLevel('الصف الخامس')">
       <div class="card bg-c-blue order-card">
         <div class="card-block">
           <h2 class="text-right">
-            <i class="fa fa-credit-card f-left"></i><span>1</span>
+            <i class="fa fa-credit-card f-left"></i><span>5</span>
           </h2>
-          <span class="f-right">الصف الاول </span>
+          <span class="f-right">الصف الخامس </span>
         </div>
       </div>
+      </a>
     </div>
     <div class="col-md-4 col-xl-3">
+      <a (click)="getLevel('الصف السادس')">
+        <div class="card bg-c-blue order-card">
+          <div class="card-block">
+            <h2 class="text-right">
+              <i class="fa fa-credit-card f-left"></i><span>6</span>
+            </h2>
+            <span class="f-right">الصف السادس </span>
+          </div>
+        </div> 
+      </a>
+    </div>
+    <div class="col-md-4 col-xl-3">
+      <a (click)="getLevel('الصف السابع')">
       <div class="card bg-c-blue order-card">
         <div class="card-block">
           <h2 class="text-right">
-            <i class="fa fa-credit-card f-left"></i><span>1</span>
+            <i class="fa fa-credit-card f-left"></i><span>7</span>
           </h2>
-          <span class="f-right">الصف الاول </span>
+          <span class="f-right">الصف السابع</span>
         </div>
       </div>
+      </a>
     </div>
     <div class="col-md-4 col-xl-3">
+      <a (click)="getLevel('الصف الثامن')">
       <div class="card bg-c-blue order-card">
         <div class="card-block">
           <h2 class="text-right">
-            <i class="fa fa-credit-card f-left"></i><span>1</span>
+            <i class="fa fa-credit-card f-left"></i><span>8</span>
           </h2>
-          <span class="f-right">الصف الاول </span>
+          <span class="f-right">الصف الثامن </span>
         </div>
       </div>
+      </a>
     </div>
     <div class="col-md-4 col-xl-3">
+      <a (click)="getLevel('الصف التاسع')">
       <div class="card bg-c-blue order-card">
         <div class="card-block">
           <h2 class="text-right">
-            <i class="fa fa-credit-card f-left"></i><span>1</span>
+            <i class="fa fa-credit-card f-left"></i><span>9</span>
           </h2>
-          <span class="f-right">الصف الاول </span>
+          <span class="f-right">الصف التاسع </span>
         </div>
       </div>
+      </a>
     </div>
+
     <div class="col-md-4 col-xl-3">
-      <a routerLink="/joinUs">
+      <a (click)="getLevel('الصف العاشر')">
       <div class="card bg-c-blue order-card">
         <div class="card-block">
           <h2 class="text-right">
-            <i class="fa fa-credit-card f-left"></i><span>1</span>
+            <i class="fa fa-credit-card f-left"></i><span>10</span>
           </h2>
-          <span class="f-right">الصف الاول </span>
+          <span class="f-right">الصف العاشر </span>
+        </div>
+      </div>
+      </a>
+    </div>
+
+    <div class="col-md-4 col-xl-3">
+      <a (click)="getLevel('الصف الحادي عشر')">
+      <div class="card bg-c-blue order-card">
+        <div class="card-block">
+          <h2 class="text-right">
+            <i class="fa fa-credit-card f-left"></i><span>11</span>
+          </h2>
+          <span class="f-right">الصف الحادي عشر </span>
+        </div>
+      </div>
+      </a>
+    </div>
+
+    <div class="col-md-4 col-xl-3">
+      <a (click)="getLevel('الصف الثاني عشر')">
+      <div class="card bg-c-blue order-card">
+        <div class="card-block">
+          <h2 class="text-right">
+            <i class="fa fa-credit-card f-left"></i><span>12</span>
+          </h2>
+          <span class="f-right">الصف الثاني عشر </span>
         </div>
       </div>
       </a>

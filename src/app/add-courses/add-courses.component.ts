@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import * as bootstrap from 'bootstrap';
 import { ElementRef } from '@angular/core';
@@ -16,28 +16,23 @@ import { InstructorService } from '../Servise/instructor.service';
 })
 
 export class AddCoursesComponent {  
+  @ViewChild('exampleCalsultModal', { static: false }) exampleCalsultModal!: ElementRef<any>;
+
    myForm!: FormGroup;
-  fullData!: FormGroup;
   allSubject: ISubject[] = [];
-  subject !: ISubject 
+  subject !: ISubject
+  isAdded:Boolean = false;
   daytime : Appointment[] = [{
     lectureDate : '',
     dayOfWeek: 0,
   }];
 
-  constructor(private fb: FormBuilder, private sub: SubjectService, private auth: AuthorizeService
-    , private cdr: ChangeDetectorRef, private ins:InstructorService) {
-    this.fullData = this.fb.group({
-      instructorId: [this.auth.getTokenID(), [Validators.required]],
-      subjectId: ['', [Validators.required]],
-      subjectName: ['', [Validators.required]],
-      appoinstmentDTOs: this.fb.array([]),
-    });
+  constructor(private fb: FormBuilder, private sub: SubjectService, 
+    private auth: AuthorizeService, private ins:InstructorService,) {
     this.loadSubjects();
   }
 
   ngOnInit() {
-    
     this.loadSubjects();
   }
   
@@ -70,8 +65,14 @@ export class AddCoursesComponent {
     console.log('InstructorSubject:', instructorsubject);
 
     this.ins.addInstructorsubject(instructorsubject).subscribe({
-        next: data=> console.log("add susseccs :" + data),
-        error: err=>console.log(err)
+        next: data => {
+        console.log('add success:', data);
+        this.isAdded = true;
+        console.log(this.isAdded)
+      },
+        error: err=>console.log(this.isAdded)
+        
+        
     })
   }
 
