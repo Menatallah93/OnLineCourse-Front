@@ -4,6 +4,7 @@ import { IInstructor } from '../Shared-Interfase/Instructor';
 import { HttpClient } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 import { IStudentRequestForInstructor, InstructorSubject } from '../Shared-Interfase/InstructorSubject';
+import { IInstructorProfile } from '../Shared-Interfase/IUserRegister';
 
 @Injectable({
   providedIn: 'root'
@@ -41,16 +42,16 @@ GetRequestForInstructor(id : any) : Observable<IStudentRequestForInstructor[]>{
 
 
 
-GetInstructorWithSubject(id : any) : Observable<IInstructor>{
-  return this.http.get<IInstructor>(`http://localhost:5112/api/Instructor/GetInstructorWithSubject/${id}`)
+GetInstructorWithSubject(id : any) : Observable<IInstructorProfile>{
+  return this.http.get<IInstructorProfile>(`http://localhost:5112/api/Instructor/GetInstructorWithSubject/${id}`)
   .pipe(catchError((err) => {
     return throwError(() => err.message || "server error");
   }));
 }
 
 
-UpdateInstructor(id: any, updatedData: any): Observable<IInstructor> {
-  return this.http.put<IInstructor>(`http://localhost:5112/api/Instructor/UpdateInstructor/${id}`, updatedData)
+UpdateInstructor(id: any, updatedData: any): Observable<IInstructorProfile> {
+  return this.http.put<IInstructorProfile>(`http://localhost:5112/api/Instructor/UpdateInstructor/${id}`, updatedData)
     .pipe(catchError((err) => {
       return throwError(() => err.message || "server error");
     }));

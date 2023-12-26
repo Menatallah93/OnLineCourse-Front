@@ -7,7 +7,7 @@ import { AuthorizeService } from '../Servise/authorize.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Appointment } from '../Shared-Interfase/InstructorSubject';
 import { IInstructorDTO } from '../Shared-Interfase/Instructor';
-import { data, error } from 'jquery';
+
 
 @Component({
   selector: 'app-join-course',

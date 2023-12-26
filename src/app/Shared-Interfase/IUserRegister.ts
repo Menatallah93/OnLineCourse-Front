@@ -14,7 +14,7 @@ export interface ILogin{
 }
 
 
-export interface IInstructor{
+export interface IInstructorProfile{
     name: string,
     status :number,
     phone: string;
