@@ -16,4 +16,10 @@ export interface ILogin{
 export interface IInstructor{
     name: string,
     status :number,
+    phone: string;
+    email: string;
+    id: string;
+    subjects: string[];
 }
+
+

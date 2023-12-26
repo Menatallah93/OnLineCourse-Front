@@ -29,10 +29,10 @@
           <thead>
             <tr>
               <th>أسم الطالب</th>
-              <th>المرحله</th>
-              <th>الماده</th>
+              <th>اسم الماده</th>
               <th>اليوم</th>
               <th>الوقت</th>
+              <th>الصف</th>
               <th></th>
             </tr>
           </thead>
@@ -40,25 +40,25 @@
 <tbody>
   <tr *ngFor="let row of tableData">
     <td>
-      <span *ngIf="!row.isEditing">{{ row.stage }}</span>
-      <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.stage" class="form-control" />
+      <span *ngIf="!row.isEditing">{{  row.studentName }}</span>
+      <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.studentName" class="form-control" />
     </td>
 
     <td>
-      <span *ngIf="!row.isEditing">{{ row.stage }}</span>
-      <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.stage" class="form-control" />
+      <span *ngIf="!row.isEditing">{{ row.subjectName }}</span>
+      <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.subjectName" class="form-control" />
     </td>
     <td>
-      <span *ngIf="!row.isEditing">{{ row.subject }}</span>
-      <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.subject" class="form-control" />
+      <span *ngIf="!row.isEditing">{{ row.dayOfWeek }}</span>
+      <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.dayOfWeek" class="form-control" />
     </td>
     <td>
-      <span *ngIf="!row.isEditing">{{ row.day }}</span>
-      <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.day" class="form-control" />
+      <span *ngIf="!row.isEditing">{{ row.lectureDate }}</span>
+      <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.lectureDate" class="form-control" />
     </td>
     <td>
-      <span *ngIf="!row.isEditing">{{ row.date }}</span>
-      <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.date" class="form-control" />
+      <span *ngIf="!row.isEditing">{{ row.grade }}</span>
+      <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.grade" class="form-control" />
     </td>
     <td>
       <a class="add" title="Add" data-toggle="tooltip" *ngIf="row.isAddMode" (click)="addOrUpdateRow(row)"><i class="material-icons">&#xE03B;</i></a>
