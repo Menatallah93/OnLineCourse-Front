@@ -13,6 +13,7 @@ export interface ILogin{
     password :string,
 }
 
+
 export interface IInstructor{
     name: string,
     status :number,
@@ -21,5 +22,7 @@ export interface IInstructor{
     id: string;
     subjects: string[];
 }
+
+
 
 
