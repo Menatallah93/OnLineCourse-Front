@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthorizeService } from '../Servise/authorize.service';
 import { InstructorService } from '../Servise/instructor.service';
-import { IInstructor } from '../Shared-Interfase/IUserRegister';
+import {  IInstructorProfile } from '../Shared-Interfase/IUserRegister';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ProfileComponent {
   instructorID: string = '';
-  Instractordata!: IInstructor;
+  Instractordata!: IInstructorProfile;
   form!: FormGroup; 
   isEditing = false;
 
