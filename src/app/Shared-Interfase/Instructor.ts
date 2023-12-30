@@ -7,7 +7,7 @@ export interface IInstructor{
 
 export interface IInstructorDTO{
     name: string,
-    instructorId:string,
+    instructorID:string,
     status :number,
     appointments:Appointment[],
     subjects?:string[]

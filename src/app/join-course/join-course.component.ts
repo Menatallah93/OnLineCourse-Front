@@ -97,10 +97,10 @@ constructor(
 
   getInstructorAppoinstments() {
     console.log(this.instructorSubject)
-    console.log(this.selectedInstructorId.instructorId)
+    console.log(this.selectedInstructorId?.instructorID)
     this.daytime = [];
     const list = this.instructorSubject
-                    .find(r=>r.instructorId === this.selectedInstructorId.instructorId)
+                    .find(r=>r.instructorID === this.selectedInstructorId?.instructorID)
 
     this.daytime = list?.appointments
 
@@ -136,7 +136,7 @@ constructor(
       subjectId: this.selectedSubject?.id ?? 0,
       studentId: this.auth.getTokenID(),
       numberOfHouers: this.numberOfHouers,
-      instructorId: this.selectedInstructorId.instructorId ?? '',
+      instructorId: this.selectedInstructorId?.instructorID ?? '',
       appoinstments: this.rows,
     };
   
