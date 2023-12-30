@@ -17,33 +17,35 @@ import { IInstructorDTO } from '../Shared-Interfase/Instructor';
 export class JoinCourseComponent implements OnInit {
   // defaultInstructorValue: number = 0;
   // selectedInstructorId: string = this.defaultInstructorValue.toString();
+  
+  allSubject: ISubject[] = [];
+  secSubject: ISubject[] = [];
+  level: string = "";
+  numberOfHouers: number = 0;
+  selectedSubject?: ISubject | null;
+  selectedInstructorId!: IInstructorDTO | null;
+  instructorSubject: IInstructorDTO[] = []
+  rows: Appointment[] = [{
+    lectureDate: '',
+    dayOfWeek: 0,
+  }];
 
-allSubject: ISubject []=[];
-secSubject:ISubject[]=[];
-level:string = "" ;
-numberOfHouers:number = 0;
-selectedSubject?: ISubject | null;
-selectedInstructorId!: IInstructorDTO;
-instructorSubject:IInstructorDTO[]=[]
-rows:Appointment[]=[{
-  lectureDate : '',
-  dayOfWeek: 0,
-}];
+  daytime?: Appointment[] = [{
+    lectureDate: '',
+    dayOfWeek: 0,
+  }];
 
-daytime? : Appointment[] = [{
-  lectureDate : '',
-  dayOfWeek: 0,
-}];
-
-constructor(
-  private sub: SubjectService, private std: StudentService,
-   private auth: AuthorizeService, private cdr: ChangeDetectorRef,
-) {
-}
+  constructor(
+    private sub: SubjectService, private std: StudentService,
+    private auth: AuthorizeService, private cdr: ChangeDetectorRef,
+  ) {
+  }
 
   ngOnInit(): void {
+    this.clearData()
+
     this.level = localStorage.getItem('Level') || '';
-    console.log("hiii : "+this.level);
+    console.log("hiii : " + this.level);
     this.sub.GetAll().subscribe({
       next: data => {
         this.allSubject = [];
@@ -61,7 +63,7 @@ constructor(
     });
   }
 
-  getSelectedSubject(sub: ISubject){
+  getSelectedSubject(sub: ISubject) {
     this.std.selectedSubject(sub);
 
     const subString = JSON.stringify(sub);
@@ -71,15 +73,15 @@ constructor(
 
   instructorBySubjectID() {
     const storedSubjectString = localStorage.getItem('selectedSubject');
-  
+
     if (storedSubjectString) {
       this.selectedSubject = JSON.parse(storedSubjectString);
     } else {
       this.selectedSubject = null;
     }
-  
+
     const selectedSubjectId = this.selectedSubject?.id;
-  
+
     if (selectedSubjectId !== undefined) {
       this.std.getInstructorBySubjectID(selectedSubjectId).subscribe({
         next: (data: IInstructorDTO[]) => {
@@ -100,7 +102,9 @@ constructor(
     console.log(this.selectedInstructorId?.instructorID)
     this.daytime = [];
     const list = this.instructorSubject
-                    .find(r=>r.instructorID === this.selectedInstructorId?.instructorID)
+
+      .find(r => r.instructorID === this.selectedInstructorId?.instructorID)
+
 
     this.daytime = list?.appointments
 
@@ -123,7 +127,7 @@ constructor(
 
   submitRequest() {
     const storedSubjectString = localStorage.getItem('selectedSubject');
-  
+
     if (storedSubjectString) {
       this.selectedSubject = JSON.parse(storedSubjectString);
     } else {
@@ -139,15 +143,25 @@ constructor(
       instructorId: this.selectedInstructorId?.instructorID ?? '',
       appoinstments: this.rows,
     };
-  
+
     console.log(instructorsubject);
     this.std.addRequestToTakeSubject(instructorsubject).subscribe({
       next: data => {
         console.log(data.response);
+        this.clearData()
       },
-        error: err=>console.log(err)
-        
+      error: err => console.log(err)
+
     })
   }
 
+
+  clearData() {
+    this.selectedInstructorId = null;
+    this.rows = [{
+      lectureDate: '',
+      dayOfWeek: 0,
+    }];
+    this.numberOfHouers = 0;
+  }
 }

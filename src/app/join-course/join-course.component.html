@@ -93,27 +93,27 @@
 
         
 
-        <div class="form-group my-3">
+        <div *ngIf="selectedInstructorId!=null" class="form-group my-3">
           <div class="row">
             <div class="form-group col-md-12 col-lg-5">
               <h5 class="form-label select-label text-right mb-3">
                 قم باختيار اليوم المناسب لك
               </h5>
             </div>
-
-            <div class="col-md-12 col-lg-5">
-              <h5 class="text-right mb-3">قم بتحديد الوقت المناسب لك</h5>
-            </div>
+         
           </div>
-          <div class="row" *ngFor="let row of rows; let i = index">
-            <div class="form-group col-md-12 col-lg-5">
-              <select class="form-select form-select-lg mb-3" name="rows" [(ngModel)]="rows[i]" aria-label="اختر اليوم الاول">
-                <option selected>اختر اليوم الاول</option>
-                <option *ngFor="let item of daytime" [ngValue]="item">{{item.dayOfWeek}} {{item.lectureDate}}</option>
+
+          <div  class="row" *ngFor="let row of rows; let i = index">
+            <div class="form-group col-md-12 col-lg-11">
+              <select class="form-select form-select-lg mb-3" name="day{{i}}" [(ngModel)]="rows[i]" aria-label="اختر اليوم الاول">
+                <option  selected>اختر الميعاد</option>
+                <option *ngFor="let item of daytime" [ngValue]="item">{{item.dayOfWeek}} &nbsp;&nbsp; {{item.lectureDate}}</option>
               </select>
             </div>
+            
+
           
-              <div class="col-md-12 col-lg-1">
+              <div  class="col-md-12 col-lg-1" >
                 <button type="button" class="btn btn-primary" (click)="addRow()">
                   <i class="fas fa-plus"></i>
                 </button>
