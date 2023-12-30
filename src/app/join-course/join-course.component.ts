@@ -102,7 +102,9 @@ export class JoinCourseComponent implements OnInit {
     console.log(this.selectedInstructorId?.instructorID)
     this.daytime = [];
     const list = this.instructorSubject
+
       .find(r => r.instructorID === this.selectedInstructorId?.instructorID)
+
 
     this.daytime = list?.appointments
 

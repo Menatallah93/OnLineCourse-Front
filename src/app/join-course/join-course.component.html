@@ -102,6 +102,7 @@
             </div>
          
           </div>
+
           <div  class="row" *ngFor="let row of rows; let i = index">
             <div class="form-group col-md-12 col-lg-11">
               <select class="form-select form-select-lg mb-3" name="day{{i}}" [(ngModel)]="rows[i]" aria-label="اختر اليوم الاول">
@@ -110,7 +111,7 @@
               </select>
             </div>
             
-            
+
           
               <div  class="col-md-12 col-lg-1" >
                 <button type="button" class="btn btn-primary" (click)="addRow()">
