@@ -78,9 +78,9 @@
             <h4 class="form-label select-label text-end" style="padding-bottom: 10px">
               اختر معلمك
             </h4>
-            <select class="form-control" name="instructorId" [(ngModel)]="selectedInstructorId" (change)="getInstructorAppoinstments()" required>
+            <select class="form-control" name="selectedInstructorId" [(ngModel)]="selectedInstructorId" (change)="getInstructorAppoinstments()" required>
               <option selected>اختر معلمك</option>
-              <option *ngFor="let item of instructorSubject" [value]="item">{{item.name}}</option>
+              <option *ngFor="let item of instructorSubject" [ngValue]="item">{{item.name}}</option>
             </select>
           </div>
 
@@ -107,19 +107,10 @@
           </div>
           <div class="row" *ngFor="let row of rows; let i = index">
             <div class="form-group col-md-12 col-lg-5">
-              <select class="form-select form-select-lg mb-3" name="day{{i}}" [(ngModel)]="row.dayOfWeek" aria-label="اختر اليوم الاول">
+              <select class="form-select form-select-lg mb-3" name="rows" [(ngModel)]="rows[i]" aria-label="اختر اليوم الاول">
                 <option selected>اختر اليوم الاول</option>
-                <option *ngFor="let item of daytime">{{item.dayOfWeek}}</option>
+                <option *ngFor="let item of daytime" [ngValue]="item">{{item.dayOfWeek}} {{item.lectureDate}}</option>
               </select>
-            </div>
-            
-            <div class="col-md-12 col-lg-5">
-              <div class="btn-group text-end" style="float: inline-start;">
-                <select class="form-select form-select-lg mb-3" name="time{{i}}" [(ngModel)]="row.lectureDate" required aria-label="اختر الوقت المناسب لك">
-                  <option selected>اختر الوقت المناسب لك</option>
-                  <option *ngFor="let time of daytime">{{time.lectureDate}}</option>
-                </select>
-              </div>
             </div>
           
               <div class="col-md-12 col-lg-1">
