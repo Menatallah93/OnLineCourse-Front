@@ -20,3 +20,16 @@ export interface IInstructor{
     phone?:string,
     email?:string
 }
+
+export interface IInstructorProfile{
+    name: string,
+    status :number,
+    phone: string;
+    email: string;
+    id: string;
+    subjects: string[];
+}
+
+
+
+

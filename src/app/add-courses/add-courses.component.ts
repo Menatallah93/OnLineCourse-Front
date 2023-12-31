@@ -1,7 +1,12 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import * as bootstrap from 'bootstrap';
 import { ElementRef } from '@angular/core';
+import { SubjectService } from '../Servise/subject.service';
+import { ISubject } from '../Shared-Interfase/ISubject';
+import { Appointment, InstructorSubject } from '../Shared-Interfase/InstructorSubject';
+import { AuthorizeService } from '../Servise/authorize.service';
+import { InstructorService } from '../Servise/instructor.service';
 
 
 @Component({
@@ -10,70 +15,65 @@ import { ElementRef } from '@angular/core';
   styleUrls: ['./add-courses.component.scss']
 })
 
-export class AddCoursesComponent {
-  //@ViewChild('exampleCalsultModal') exampleCalsultModal!: ElementRef;
-  
-  myForm!: FormGroup;
-  fullData!:FormGroup
-  
+export class AddCoursesComponent {  
+  @ViewChild('exampleCalsultModal', { static: false }) exampleCalsultModal!: ElementRef<any>;
 
-  constructor(private fb: FormBuilder , private cdr: ChangeDetectorRef ) { }
+   myForm!: FormGroup;
+  allSubject: ISubject[] = [];
+  subject !: ISubject
+  isAdded:Boolean = false;
+  daytime : Appointment[] = [{
+    lectureDate : '',
+    dayOfWeek: 0,
+  }];
+
+  constructor(private fb: FormBuilder, private sub: SubjectService, 
+    private auth: AuthorizeService, private ins:InstructorService,) {
+    this.loadSubjects();
+  }
 
   ngOnInit() {
-    this.myForm = this.fb.group({
-      rows: this.fb.array([this.createRow])
-    });
-
-    this.fullData = this.fb.group({
-      subjects: this.fb.array([this.createCard])
-    })
-
-    setTimeout(() => {
-      this.hideModal();
-    }, 5000);
-  }
-
-  hideModal() {
-   //const modal: any = new bootstrap.Modal(this.exampleCalsultModal.nativeElement);
-   //modal.hide();
-  }
-
-  get rowsArray() {
-    return this.myForm.get('rows') as FormArray;
-  }
-
-  get cardArray(){
-    return this.fullData.get('subjects') as FormArray;
+    this.loadSubjects();
   }
   
-
-  createRow(): FormGroup {
-    return this.fb.group({
-      day: new FormControl(''),
-      time: new FormControl('')
-    });
+  loadSubjects() {
+    if (!this.allSubject.length) {
+      this.sub.GetAll().subscribe((info) => {
+        this.allSubject = info;
+      });
+    }
   }
-  createCard():FormGroup{
-    return this.fb.group({
-      subject: new FormControl(''),
-      grade: new FormControl(''),
-      myform: this.myForm
+  
+  createRow() {
+    this.daytime.push({
+      lectureDate : '',
+      dayOfWeek: 0,
     })
   }
 
 
-  addRow() {
-    this.rowsArray.push(this.createRow());
-    this.cdr.detectChanges();
+
+  submit() {
+    const instructorsubject: InstructorSubject = {
+      instructorId: this.auth.getTokenID(),
+      subjectId: this.subject.id,
+      subjectName: this.subject.name,
+      appoinstmentDTOs: this.daytime,
+    };
+
+
+    console.log('InstructorSubject:', instructorsubject);
+
+    this.ins.addInstructorsubject(instructorsubject).subscribe({
+        next: data => {
+        console.log('add success:', data);
+        this.isAdded = true;
+        console.log(this.isAdded)
+      },
+        error: err=>console.log(this.isAdded)
+        
+        
+    })
   }
 
-  addCard() {
-    this.cardArray.push(this.createCard());
-    this.cdr.detectChanges();
-  }
-
-}
-
-function ViewChild(arg0: string): (target: AddCoursesComponent, propertyKey: "exampleCalsultModal") => void {
-  throw new Error('Function not implemented.');
 }

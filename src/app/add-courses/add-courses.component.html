@@ -1,65 +1,73 @@
 <div class="container mt-5">
     <div class="card">
-        <form [formGroup]="fullData">
+        <form (ngSubmit)="submit()" #courseForm="ngForm">
             <div class="form-group">
-                <label class="mb-2" for="daySelect1">اختر المادة :</label>
+                <label class="mb-2" for="subject">اختر المادة :</label>
 
-                <select class="form-control" id="daySelect1" name="day1">
-                    <option>الرياضيات</option>
-                    <option>العلوم</option>
-                    <option>اللغه العربيه</option>
-                    <option>اللغه الانجليزية</option>
-                    <option>الدراسات الاجتماعية</option>
-                    <option>فيزياء</option>
-                    <option>الكيمياء</option>
-                    <option>الاحياء</option>
-                </select>
+                <div >
+                    <select class="form-control" id="subject" [(ngModel)]="subject" name="subject">
+                        <option *ngFor="let sub of allSubject" [ngValue]="sub">{{ sub.name }}</option>
+                      </select>
+                </div>
             </div>
 
-            <div class="form-group" [formGroup]="myForm">
-                <div class="row" formArrayName="rows" *ngFor="let row of rowsArray.controls; let i = index">
+            <div class="form-group">
+                <div class="row" *ngFor="let row of daytime; let i = index">
                     <div class="form-group col-md-6 col-lg-6">
                         <label for="daySelect">اختر اليوم</label>
-                        <select class="form-control" formControlName="{{ i }}.day" required>
-                            <option>السبت</option>
-                            <option>الاحد</option>
-                            <option>الاثنين</option>
-                            <option>الثلاثاء</option>
-                            <option>الاربعاء</option>
-                            <option>الخميس</option>
-                            <option>الجمعه</option>
+                        <select class="form-control" name="day{{i}}" [(ngModel)]="row.dayOfWeek" required>
+                            <option value=0 >الاحد</option>
+                            <option value=1 >الاثنين</option>
+                            <option value=2 >الثلاثاء</option>
+                            <option value=3 >الاربعاء</option>
+                            <option value=4>الخميس</option>
+                            <option value=5 >الجمعه</option>
+                            <option value=6 >السبت</option>
                         </select>
                     </div>
 
                     <div class="form-group col-md-6 col-lg-5">
                         <label for="timeInput">اختر الوقت: </label>
-                        <input type="time" class="form-control" formControlName="{{ i }}.time" required>
+                        <input type="time" class="form-control" name="time{{i}}" [(ngModel)]="row.lectureDate" required>
                     </div>
 
                     <div class="col-md-6 col-lg-1">
-                        <button type="button" class="btn btn-primary mt-4" (click)="addRow()">
+                        <button type="button" class="btn btn-primary mt-4" (click)="createRow()">
                             <i class="fas fa-plus"></i>
                         </button>
                     </div>
                 </div>
             </div>
-
-
-            <a type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleCalsultModal">Submit</a>
+            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleCalsultModal">Submit</button>
         </form>
     </div>
 
 </div>
 
-<div class="modal fade"  #exampleCalsultModal  id="exampleCalsultModal" tabindex="-1" aria-labelledby="exampleCalsultModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-body" style="padding-top: 40px;">
-          <div class="text-center">
-            <i class="fas fa-check-circle" style="font-size: 48px; color: green;"></i>
-            <h1 style="margin-top: 10px;">تم إضافة المادة بنجاح</h1>
+    <div *ngIf="isAdded" class="modal fade" id="exampleCalsultModal" tabindex="-1" aria-labelledby="exampleCalsultModalLabel" aria-hidden="true"
+      (hidden)="courseForm.form.markAsPristine()">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-body" style="padding-top: 40px;">
+              <div class="text-center">
+                <i class="fas fa-check-circle" style="font-size: 48px; color: green;"></i>
+                <h1 style="margin-top: 10px;">تم إضافة المادة بنجاح</h1>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+
+    <div *ngIf="!isAdded" class="modal fade" id="exampleCalsultModal" tabindex="-1" aria-labelledby="exampleCalsultModalLabel" aria-hidden="true">
+    
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-body" style="padding-top: 40px;">
+              <div class="text-center">
+                <i class="fas fa-times-circle" style="font-size: 48px; color: red;"></i>
+                <h1 style="margin-top: 10px;">لم يتم إضافة المادة</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
