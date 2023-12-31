@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./dash-board.component.scss']
 })
 export class DashBoardComponent {
+  navlink:string = "addsubject";
 
+  navigate(link:string){
+    this.navlink = link ;
+  }
 }
