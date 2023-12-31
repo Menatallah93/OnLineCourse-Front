@@ -16,13 +16,13 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="navigate('listen')">
+        <a class="nav-link" (click)="navigate('acceptedequests')">
           <i class="mdi mdi-compass-outline menu-icon"></i>
           <span class="menu-title">قبول المدرسيين</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="navigate('listen')">
+        <a class="nav-link" (click)="navigate('')">
           <i class="mdi mdi-contacts menu-icon"></i>
           <span class="menu-title">استقبال الطلاب</span>
         </a>
@@ -44,6 +44,11 @@
 <div class="col-9 p-0 mx-1">
   <div style="height: 80vh; overflow-y: auto; width: 100%;" *ngIf="navlink === 'addsubject'" class="custom-scrollbar">
     <app-add-subject></app-add-subject>
+  </div>
+
+  <div style="height: 80vh; overflow-y: auto; width: 100%;" *ngIf="navlink === 'acceptedequests'" class="custom-scrollbar">
+    <app-all-requests></app-all-requests>
+    <app-all-accepted-requests></app-all-accepted-requests>
   </div>
 </div>
 
