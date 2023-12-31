@@ -1,0 +1,51 @@
+.custom-container {
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .custom-form {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .custom-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .custom-input {
+    border: 2px solid #06bbcc;
+    border-radius: 8px;
+  }
+  
+  .custom-error {
+    color: #dc3545;
+    margin-top: 5px;
+  }
+  
+  .custom-radio-group {
+    margin-top: 15px;
+  }
+  
+  .custom-radio-label {
+    margin-right: 20px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .custom-button {
+    background-color: #06bbcc;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .custom-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
