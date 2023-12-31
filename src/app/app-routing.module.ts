@@ -47,6 +47,8 @@ const routes: Routes = [
   { path: "instractortable", component: InstractorTableComponent },
   { path: "addsubject", component: AddSubjectComponent },
   { path: "editubject/:id", component: AddSubjectComponent },
+  {path:"showrequests",component:AllRequestsComponent},
+  {path:"acceptedequests",component:AllAcceptedRequestsComponent},
   { path: "subjects", component: SubjectsComponent },
 
 ];
