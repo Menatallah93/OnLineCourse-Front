@@ -13,6 +13,13 @@ export interface ILogin{
     password :string,
 }
 
+export interface IInstructor{
+    id?:string,
+    name: string,
+    status :number,
+    phone?:string,
+    email?:string
+}
 
 export interface IInstructorProfile{
     name: string,
