@@ -25,6 +25,8 @@ import { InstuctorHomePageComponent } from './instuctor-home-page/instuctor-home
 import { HttpClientModule } from '@angular/common/http';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { SubjectsComponent } from './subjects/subjects.component';
+import { AllRequestsComponent } from './all-requests/all-requests.component';
+import { AllAcceptedRequestsComponent } from './all-accepted-requests/all-accepted-requests.component';
 
 
 
@@ -52,6 +54,8 @@ import { SubjectsComponent } from './subjects/subjects.component';
     InstuctorHomePageComponent,
     AddSubjectComponent,
     SubjectsComponent,
+    AllRequestsComponent,
+    AllAcceptedRequestsComponent,
 
   ],
 

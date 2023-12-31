@@ -20,6 +20,8 @@ import { AddCoursesComponent } from './add-courses/add-courses.component';
 import { InstractorTableComponent } from './instractor-table/instractor-table.component';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { SubjectsComponent } from './subjects/subjects.component';
+import { AllRequestsComponent } from './all-requests/all-requests.component';
+import { AllAcceptedRequestsComponent } from './all-accepted-requests/all-accepted-requests.component';
 
 
 
@@ -46,6 +48,7 @@ const routes: Routes = [
   { path: "addsubject", component: AddSubjectComponent },
   { path: "editubject/:id", component: AddSubjectComponent },
   { path: "subjects", component: SubjectsComponent },
+
 ];
 
 @NgModule({

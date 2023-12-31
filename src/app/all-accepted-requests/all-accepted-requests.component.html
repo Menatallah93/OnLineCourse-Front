@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">الاسم</th>
+            <th scope="col">الايميل</th>
+            <th scope="col">رقم الموبايل</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of instructors">
+            <th scope="row">{{item.name}}</th>
+            <td>{{item.email}}</td>
+            <td>{{item.phone}}</td>
+            <td>
+                <div>
+                    <button class="btn btn-primary rounded-3 mx-3"
+                    (click)="RejectedRequest(item.id)"
+                     style="background-color: #06BBCC !important;">رفض</button>
+                       
+                </div>
+            </td>
+          </tr>
+       
+        </tbody>
+      </table>
+</div>
