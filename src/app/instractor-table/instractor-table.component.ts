@@ -11,17 +11,18 @@ import { AuthorizeService } from '../Servise/authorize.service';
 })
 export class InstractorTableComponent implements OnInit {
   selectedDay: string | null = null;
-  tableData: any[] = [];
-  filtTable: any[] = [];
+  tableData: IStudentRequestForInstructor[] = [];
+  filtTable: IStudentRequestForInstructor[] = [];
   itemsPerPage = 7;
   currentPage = 1;
   totalPages = 1;
   instructorID: string = '';
-  route: any;
   constructor(
     private auth: AuthorizeService,
-    private instr: InstructorService
-  ) {}
+    private instr: InstructorService,
+    private router: Router ) 
+  {
+  }
 
   get displayedRows(): any[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
@@ -64,9 +65,9 @@ export class InstractorTableComponent implements OnInit {
     }
   }
 
-    navigateTo(studentID: number) {
-      this.route.navigate(['/courses']);
-  }
+  // navigateTo(studentId: string) {
+  //   this.router.navigate(['/courses', studentId]);
+  // }
 
   deleteRow(row: any) {
     const index = this.tableData.indexOf(row);
@@ -83,7 +84,7 @@ export class InstractorTableComponent implements OnInit {
 
   filterTable() {
     if (this.selectedDay !== null) {
-      this.filtTable = this.tableData.filter((row) => row.dayOfWeek === this.selectedDay?.toString());
+      this.filtTable = this.tableData.filter((row) => row.dayOfWeek.toString() === this.selectedDay?.toString());
     } else {
       this.instr.GetRequestForInstructor(this.instructorID).subscribe(
         (data) => {

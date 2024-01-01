@@ -14,7 +14,7 @@ export class AllRequestsComponent implements OnInit {
   currentPage = 1;
   totalPages = 1;
 
-  constructor(private serv: InstructorService) {}
+  constructor(private serv: InstructorService) { }
 
   ngOnInit(): void {
     this.serv.GetAllPending().subscribe({

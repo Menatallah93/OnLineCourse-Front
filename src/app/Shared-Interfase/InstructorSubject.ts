@@ -12,6 +12,7 @@ export interface Appointment {
 export interface IStudentRequestForInstructor {
   requestId: number;
   studentName: string;
+  studentId?: string;
   grade: string;
   subjectName: string;
   lectureDate: string;

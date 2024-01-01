@@ -10,11 +10,11 @@ import { IInstructor } from '../Shared-Interfase/IUserRegister';
 export class AllAcceptedRequestsComponent implements OnInit {
   instructors: IInstructor[] = [];
   displayedInstructors: IInstructor[] = [];
-  itemsPerPage = 7; 
+  itemsPerPage = 7;
   currentPage = 1;
   totalPages = 1;
 
-  constructor(private serv: InstructorService) {}
+  constructor(private serv: InstructorService) { }
 
   ngOnInit(): void {
     this.serv.GetAllAccepted().subscribe({

@@ -22,6 +22,7 @@ import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { AllRequestsComponent } from './all-requests/all-requests.component';
 import { AllAcceptedRequestsComponent } from './all-accepted-requests/all-accepted-requests.component';
+import { AllPenddingStudentRequestComponent } from './all-pendding-student-request/all-pendding-student-request.component';
 
 
 
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashBoardComponent },
   { path: 'asidebar', component: AsideBarComponent },
   { path: 'courses', component: CoursesComponent },
+  { path: 'courses/:studentID', component: CoursesComponent },
   { path: "termcConditions", component: TermsConditionsonComponent },
   { path: "studentorinstractor", component: StudentOrInstractorComponent },
   { path: "grades", component: GradeComponent },
@@ -49,6 +51,8 @@ const routes: Routes = [
   { path: "editubject/:id", component: AddSubjectComponent },
   {path:"showrequests",component:AllRequestsComponent},
   {path:"acceptedequests",component:AllAcceptedRequestsComponent},
+  {path:"penddingstudentrequest",component:AllPenddingStudentRequestComponent},
+  {path:"acceptedrequests",component:AllAcceptedRequestsComponent},
   { path: "subjects", component: SubjectsComponent },
 
 ];

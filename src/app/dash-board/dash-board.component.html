@@ -22,7 +22,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="navigate('')">
+        <a class="nav-link" (click)="navigate('acceptedrequests')">
           <i class="mdi mdi-contacts menu-icon"></i>
           <span class="menu-title">استقبال الطلاب</span>
         </a>
@@ -59,7 +59,17 @@
     </div>
   </div>
 
-  <div style="overflow-y: auto; width: 100%;" *ngIf="navlink === 'showrequests'">
+  <div style="overflow-y: auto; width: 100%;" *ngIf="navlink === 'acceptedrequests'">
+    <div class="ml-5" style="text-align: left; ">
+      <a type="submit" (click)="toggleStudentRequests()" class="custom-button">
+        {{ shown ? 'إخفاء الطلبات ' : 'عرض الطلبات' }}
+      </a>
+    </div>
+    <app-all-accepted-student-request></app-all-accepted-student-request>
+  
+    <div *ngIf="showStudentRequests">
+      <app-all-pendding-student-request></app-all-pendding-student-request>
+    </div>
   </div>
 </div>
 

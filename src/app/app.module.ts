@@ -27,6 +27,8 @@ import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { AllRequestsComponent } from './all-requests/all-requests.component';
 import { AllAcceptedRequestsComponent } from './all-accepted-requests/all-accepted-requests.component';
+import { AllAcceptedStudentRequestComponent } from './all-accepted-student-request/all-accepted-student-request.component';
+import { AllPenddingStudentRequestComponent } from './all-pendding-student-request/all-pendding-student-request.component';
 
 
 
@@ -56,6 +58,8 @@ import { AllAcceptedRequestsComponent } from './all-accepted-requests/all-accept
     SubjectsComponent,
     AllRequestsComponent,
     AllAcceptedRequestsComponent,
+    AllAcceptedStudentRequestComponent,
+    AllPenddingStudentRequestComponent,
 
   ],
 
