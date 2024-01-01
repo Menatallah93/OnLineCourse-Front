@@ -16,7 +16,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="navigate('acceptedequests')">
+        <a class="nav-link" (click)="navigate('showrequests')">
           <i class="mdi mdi-compass-outline menu-icon"></i>
           <span class="menu-title">قبول المدرسيين</span>
         </a>
@@ -41,14 +41,25 @@
   <!-- page-body-wrapper ends -->
 </div>
 
-<div class="col-9 p-0 mx-1">
-  <div style="height: 80vh; overflow-y: auto; width: 100%;" *ngIf="navlink === 'addsubject'" class="custom-scrollbar">
+<div class="col-9 p-0 mx-1 mt-5">
+  <div style="overflow-y: auto; width: 100%;" *ngIf="navlink === 'addsubject'">
     <app-add-subject></app-add-subject>
   </div>
 
-  <div style="height: 80vh; overflow-y: auto; width: 100%;" *ngIf="navlink === 'acceptedequests'" class="custom-scrollbar">
-    <app-all-requests></app-all-requests>
+  <div style="overflow-y: auto; width: 100%;" *ngIf="navlink === 'showrequests'">
+    <div class="ml-5" style="text-align: left; ">
+      <a type="submit" (click)="toggleRequests()" class="custom-button">
+        {{ shown ? 'إخفاء طلبات المدرسين' : 'عرض طلبات المدرسين' }}
+      </a>
+    </div>
     <app-all-accepted-requests></app-all-accepted-requests>
+  
+    <div *ngIf="shown">
+      <app-all-requests></app-all-requests>
+    </div>
+  </div>
+
+  <div style="overflow-y: auto; width: 100%;" *ngIf="navlink === 'showrequests'">
   </div>
 </div>
 

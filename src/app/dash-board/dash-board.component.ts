@@ -7,8 +7,13 @@ import { Component } from '@angular/core';
 })
 export class DashBoardComponent {
   navlink:string = "addsubject";
+  shown:boolean = false;
 
   navigate(link:string){
     this.navlink = link ;
+  }
+
+  toggleRequests() {
+    this.shown = !this.shown;
   }
 }

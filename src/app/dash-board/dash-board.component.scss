@@ -1,4 +1,14 @@
 
+.custom-button {
+  background-color: #06bbcc;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
 @-webkit-keyframes flash {
   0% {
     opacity: 1; }
