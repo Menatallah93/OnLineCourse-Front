@@ -10,7 +10,12 @@ import { AuthorizeService } from '../Servise/authorize.service';
   styleUrls: ['./instractor-table.component.scss'],
 })
 export class InstractorTableComponent implements OnInit {
+  selectedDay: string | null = null;
   tableData: any[] = [];
+  filtTable: any[] = [];
+  itemsPerPage = 7;
+  currentPage = 1;
+  totalPages = 1;
   instructorID: string = '';
   route: any;
   constructor(
@@ -18,16 +23,31 @@ export class InstractorTableComponent implements OnInit {
     private instr: InstructorService
   ) {}
 
+  get displayedRows(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.filtTable.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
   ngOnInit(): void {
     this.instructorID = this.auth.getTokenID();
     this.instr.GetRequestForInstructor(this.instructorID).subscribe(
       (data) => {
-        this.tableData = data;
+        this.tableData = data.map((row) => ({ ...row, isEditing: false, isAddMode: false }));
+        this.filtTable = this.tableData;
+        this.updatePagination();
       },
       (error) => {
         console.error('Error fetching data:', error);
       }
     );
+  }
+  updatePagination() {
+    this.totalPages = Math.ceil(this.filtTable.length / this.itemsPerPage);
+  }
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
   }
 
   startEditing(row: any) {
@@ -39,8 +59,8 @@ export class InstractorTableComponent implements OnInit {
   addOrUpdateRow(row: any) {
     if (row.isEditing) {
       row.isAddMode = false;
-      // Update row and set isEditing to false
       row.isEditing = false;
+      this.updatePagination();
     }
   }
 
@@ -52,12 +72,28 @@ export class InstractorTableComponent implements OnInit {
     const index = this.tableData.indexOf(row);
     if (index !== -1) {
       this.tableData.splice(index, 1);
+      this.updatePagination();
     }
   }
   localTime = new Date();
 
   getLocalTime(): string {
     return this.localTime.toLocaleTimeString();
+  }
+
+  filterTable() {
+    if (this.selectedDay !== null) {
+      this.filtTable = this.tableData.filter((row) => row.dayOfWeek === this.selectedDay?.toString());
+    } else {
+      this.instr.GetRequestForInstructor(this.instructorID).subscribe(
+        (data) => {
+          this.tableData = data.map((row) => ({ ...row, isEditing: false, isAddMode: false }));
+        },
+        (error) => {
+          console.error('Error fetching data:', error);
+        }
+      );
+    }
   }
 
   // getLocalTime(): string {
