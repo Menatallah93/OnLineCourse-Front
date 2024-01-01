@@ -11,11 +11,10 @@ import { IInstructorProfile } from '../Shared-Interfase/IUserRegister';
   providedIn: 'root'
 })
 export class InstructorService {
-  iInstructor!:IInstructor
+  iInstructor!: IInstructor
   constructor(private http: HttpClient) { }
 
   GetAll(): Observable<IInstructor[]> {
-
     return this.http.get<IInstructor[]>('http://localhost:5112/api/Instructor/GetAllInstructors').pipe(
       catchError((error) => {
         // Handle and return the error message
@@ -24,8 +23,9 @@ export class InstructorService {
       })
     );
   }
-  getInstructorByID(id : any) : Observable<IInstructor>{
-      return this.http.get<IInstructor>(`http://localhost:5112/api/Instructor/GetInstructorById/${id}`)
+
+  getInstructorByID(id: any): Observable<IInstructor> {
+    return this.http.get<IInstructor>(`http://localhost:5112/api/Instructor/GetInstructorById/${id}`)
 
       .pipe(catchError((err) => {
         return throwError(() => err.message || "server error");
@@ -38,8 +38,8 @@ export class InstructorService {
         return throwError(() => err.message || "server error");
       }));
   }
-  GetAllPending(): Observable<IInstructor[]> {
 
+  GetAllPending(): Observable<IInstructor[]> {
     return this.http.get<IInstructor[]>('http://localhost:5112/api/Instructor/GetAllPendingInstructors').pipe(
       catchError((error) => {
         // Handle and return the error message
@@ -50,7 +50,6 @@ export class InstructorService {
   }
 
   GetAllAccepted(): Observable<IInstructor[]> {
-
     return this.http.get<IInstructor[]>('http://localhost:5112/api/Instructor/GetAllAcceptedInstructors').pipe(
       catchError((error) => {
         // Handle and return the error message
@@ -60,56 +59,57 @@ export class InstructorService {
     );
   }
 
-  Accept(id:string): Observable<{ response: any, error: any }> {
-  // const headers = this.auth.createHeaders(); 
-  return this.http.put(`http://localhost:5112/api/Admin/AcceptInstructorRequest/${id}`,null)
-    .pipe(
-      map((response: any) => ({ response, error: null })),
-      catchError((error) => {
-        console.error('Error:', error);
-        return [{ response: null, error: error.message || 'Server error' }];
-      })
-    );
-}
-Rejected(id:string): Observable<{ response: any, error: any }> {
-  // const headers = this.auth.createHeaders(); 
-  return this.http.put(`http://localhost:5112/api/Admin/RejectInstructorRequest/${id}`,null)
-    .pipe(
-      map((response: any) => ({ response, error: null })),
-      catchError((error) => {
-        console.error('Error:', error);
-        return [{ response: null, error: error.message || 'Server error' }];
-      })
-    );
-}
+  Accept(id: string): Observable<{ response: any, error: any }> {
+    // const headers = this.auth.createHeaders(); 
+    return this.http.put(`http://localhost:5112/api/Admin/AcceptInstructorRequest/${id}`, null)
+      .pipe(
+        map((response: any) => ({ response, error: null })),
+        catchError((error) => {
+          console.error('Error:', error);
+          return [{ response: null, error: error.message || 'Server error' }];
+        })
+      );
+  }
+
+  Rejected(id: string): Observable<{ response: any, error: any }> {
+    // const headers = this.auth.createHeaders(); 
+    return this.http.put(`http://localhost:5112/api/Admin/RejectInstructorRequest/${id}`, null)
+      .pipe(
+        map((response: any) => ({ response, error: null })),
+        catchError((error) => {
+          console.error('Error:', error);
+          return [{ response: null, error: error.message || 'Server error' }];
+        })
+      );
+  }
 
 
 
 
 
-GetRequestForInstructor(id : any) : Observable<IStudentRequestForInstructor[]>{
-  return this.http.get<IStudentRequestForInstructor[]>(`http://localhost:5112/api/Instructor/GetRequestForInstructor/${id}`)
-  .pipe(catchError((err) => {
-    return throwError(() => err.message || "server error");
-  }));
-}
+  GetRequestForInstructor(id: any): Observable<IStudentRequestForInstructor[]> {
+    return this.http.get<IStudentRequestForInstructor[]>(`http://localhost:5112/api/Instructor/GetRequestForInstructor/${id}`)
+      .pipe(catchError((err) => {
+        return throwError(() => err.message || "server error");
+      }));
+  }
 
 
 
-GetInstructorWithSubject(id : any) : Observable<IInstructorProfile>{
-  return this.http.get<IInstructorProfile>(`http://localhost:5112/api/Instructor/GetInstructorWithSubject/${id}`)
-  .pipe(catchError((err) => {
-    return throwError(() => err.message || "server error");
-  }));
-}
+  GetInstructorWithSubject(id: any): Observable<IInstructorProfile> {
+    return this.http.get<IInstructorProfile>(`http://localhost:5112/api/Instructor/GetInstructorWithSubject/${id}`)
+      .pipe(catchError((err) => {
+        return throwError(() => err.message || "server error");
+      }));
+  }
 
 
-UpdateInstructor(id: any, updatedData: any): Observable<IInstructorProfile> {
-  return this.http.put<IInstructorProfile>(`http://localhost:5112/api/Instructor/UpdateInstructor/${id}`, updatedData)
-    .pipe(catchError((err) => {
-      return throwError(() => err.message || "server error");
-    }));
-}
+  UpdateInstructor(id: any, updatedData: any): Observable<IInstructorProfile> {
+    return this.http.put<IInstructorProfile>(`http://localhost:5112/api/Instructor/UpdateInstructor/${id}`, updatedData)
+      .pipe(catchError((err) => {
+        return throwError(() => err.message || "server error");
+      }));
+  }
 
 
 

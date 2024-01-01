@@ -1,21 +1,17 @@
-<!-- instractor-table.component.html -->
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <!-- Your head content remains the same -->
-</head>
-
-<body>
   <div class="container-lg">
     <div class="table-responsive">
       <div class="table-wrapper">
         <div class="table-title">
           <div class="row">
-            <div class="col-4 pt-4">
-              <div class="form-group col-lg-6">
+            <div class="col-4 pt-4 row">
+              <div class="col-6 p-0 mt-2" style="width: 40%;">
+                 أختراليوم لعرض الطلاب : 
+              </div>
+              <div class="form-group col-6 px-1" >
                 <select class="form-control" name="day" [(ngModel)]="selectedDay" (change)="filterTable()" required>
+                  <option value="اختراليوم" selected>اختراليوم </option>
                   <option value="الاحد">الاحد</option>
                   <option value="الاثنين">الاثنين</option>
                   <option value="الثلاثاء">الثلاثاء</option>
@@ -69,7 +65,7 @@
               <td>
                 <a class="add" title="Add" data-toggle="tooltip" *ngIf="row.isAddMode" (click)="addOrUpdateRow(row)"><i class="material-icons">&#xE03B;</i></a>
                 <a class="edit" title="Edit" data-toggle="tooltip" *ngIf="!row.isEditing" (click)="startEditing(row)"><i class="material-icons">&#xE254;</i></a>
-                <a class="view" title="View" data-toggle="tooltip" (click)="navigateTo(row)"><i class="material-icons">&#xE8F4;</i></a>
+                <a class="view" title="View" data-toggle="tooltip" routerLink="/courses/{{row.studentId}}"><i class="material-icons">&#xE8F4;</i></a>
                 <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteRow(row)"><i class="material-icons">&#xE872;</i></a>
               </td>
             </tr>
@@ -87,6 +83,4 @@
       </div>
     </div>
   </div>
-</body>
 
-</html>
