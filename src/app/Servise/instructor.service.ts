@@ -111,7 +111,12 @@ export class InstructorService {
       }));
   }
 
-
+  updateAppointmentForUser(id: any, newAppointment: any): Observable<IInstructorProfile> {
+    return this.http.put<IInstructorProfile>(`http://localhost:5112/api/Instructor/EditAppointment/${id}`, newAppointment)
+      .pipe(catchError((err) => {
+        return throwError(() => err.message || "server error");
+      }));
+  }
 
 
 }

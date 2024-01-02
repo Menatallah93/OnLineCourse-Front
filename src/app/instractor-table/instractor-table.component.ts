@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IStudentRequestForInstructor } from '../Shared-Interfase/InstructorSubject';
 import { InstructorService } from '../Servise/instructor.service';
 import { AuthorizeService } from '../Servise/authorize.service';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-instractor-table',
@@ -60,6 +61,15 @@ export class InstractorTableComponent implements OnInit {
   addOrUpdateRow(row: any) {
     if (row.isEditing) {
       row.isAddMode = false;
+      // Update row and set isEditing to false
+      this.instr.updateAppointmentForUser(row.customAppointmentId, {
+        lectureDate: row.lectureDate,
+        dayOfWeek: row.dayOfWeek
+      }).subscribe({
+        next: data => {
+          console.log(data);
+        }
+      })
       row.isEditing = false;
       this.updatePagination();
     }
@@ -83,12 +93,14 @@ export class InstractorTableComponent implements OnInit {
   }
 
   filterTable() {
-    if (this.selectedDay !== null) {
+    if (this.selectedDay !== "null") {
+      
       this.filtTable = this.tableData.filter((row) => row.dayOfWeek.toString() === this.selectedDay?.toString());
     } else {
+      
       this.instr.GetRequestForInstructor(this.instructorID).subscribe(
         (data) => {
-          this.tableData = data.map((row) => ({ ...row, isEditing: false, isAddMode: false }));
+          this.filtTable = data.map((row) => ({ ...row, isEditing: false, isAddMode: false }));
         },
         (error) => {
           console.error('Error fetching data:', error);
