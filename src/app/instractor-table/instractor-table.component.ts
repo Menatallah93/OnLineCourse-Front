@@ -21,8 +21,7 @@ export class InstractorTableComponent implements OnInit {
     private auth: AuthorizeService,
     private instr: InstructorService,
     private router: Router ) 
-  {
-  }
+  {}
 
   get displayedRows(): any[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
@@ -42,9 +41,11 @@ export class InstractorTableComponent implements OnInit {
       }
     );
   }
+
   updatePagination() {
     this.totalPages = Math.ceil(this.filtTable.length / this.itemsPerPage);
   }
+
   goToPage(page: number) {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
@@ -52,7 +53,6 @@ export class InstractorTableComponent implements OnInit {
   }
 
   startEditing(row: any) {
-    // Set isEditing property to true to show input fields for editing
     row.isEditing = true;
     row.isAddMode = true;
   }
@@ -65,9 +65,6 @@ export class InstractorTableComponent implements OnInit {
     }
   }
 
-  // navigateTo(studentId: string) {
-  //   this.router.navigate(['/courses', studentId]);
-  // }
 
   deleteRow(row: any) {
     const index = this.tableData.indexOf(row);
