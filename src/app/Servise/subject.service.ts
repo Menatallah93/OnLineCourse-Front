@@ -7,14 +7,13 @@ import { ISubject } from '../Shared-Interfase/ISubject';
   providedIn: 'root'
 })
 export class SubjectService {
-
+  private apiUrl = 'http://localhost:5112/api';
   headers: any
   constructor(private Http: HttpClient) { }
 
   GetAll(): Observable<ISubject[]> {
-    return this.Http.get<ISubject[]>('http://localhost:5112/api/Admin/GetAllSubjects').pipe(
+    return this.Http.get<ISubject[]>(`${this.apiUrl}/Admin/GetAllSubjects`).pipe(
       catchError((error) => {
-        // Handle and return the error message
         console.error('Error:', error);
         return throwError(() => error.message || 'Server error');
       })
@@ -23,7 +22,7 @@ export class SubjectService {
 
 
   GetByID(id: any): Observable<ISubject> {
-    return this.Http.get<ISubject>(`http://localhost:5112/api/Admin/GetSubject/${id}`)
+    return this.Http.get<ISubject>(`${this.apiUrl}/Admin/GetSubject/${id}`)
       .pipe(catchError((err) => {
         return throwError(() => err.message || "server error");
       }));
@@ -31,14 +30,14 @@ export class SubjectService {
 
 
   Delete(id: number): Observable<any> {
-    return this.Http.delete(`http://localhost:5112/api/Admin/DeleteSubject/${id}`)
+    return this.Http.delete(`${this.apiUrl}/Admin/DeleteSubject/${id}`)
       .pipe(catchError((err) => {
         return throwError(() => err.message || "server error");
       }));
   }
 
   AddSubject(Sub: ISubject): Observable<{ response: any, error: any }> {
-    return this.Http.post('http://localhost:5112/api/Admin/AddSubject', Sub)
+    return this.Http.post(`${this.apiUrl}/Admin/AddSubject`, Sub)
       .pipe(
         map((response: any) => ({ response, error: null })),
         catchError((error) => {
@@ -49,7 +48,7 @@ export class SubjectService {
   }
 
   UpdateSubject(id: number, Sub: ISubject): Observable<{ response: any, error: any }> {
-    return this.Http.put(`http://localhost:5112/api/Admin/UpdateSubject/${id}`, Sub)
+    return this.Http.put(`${this.apiUrl}/Admin/UpdateSubject/${id}`, Sub)
       .pipe(
         map((response: any) => ({ response, error: null })),
         catchError((error) => {

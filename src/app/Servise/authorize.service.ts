@@ -8,6 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthorizeService {
+  private apiUrl = 'http://localhost:5112/api';
   currentUser: any = new BehaviorSubject(null);
   userRole: string = '';
 
@@ -19,11 +20,11 @@ export class AuthorizeService {
   }
 
   register(User: any): Observable<any> {
-    return this.myhttp.post('http://localhost:5112/api/Account/Register', User);
+    return this.myhttp.post(`${this.apiUrl}/Account/Register`, User);
   }
 
   login(User: any): Observable<any> {
-    return this.myhttp.post('http://localhost:5112/api/Account/Login', User);
+    return this.myhttp.post(`${this.apiUrl}/Account/Login`, User);
   }
 
   id: any = `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier`;
