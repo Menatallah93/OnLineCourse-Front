@@ -136,108 +136,180 @@
       </div>
   </div>
   </div>
-  <!-- Footer End -->
 
+<!-- your-modal.component.html -->
 
-  <!-- Back to Top -->
-  <!-- <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a> -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h2 class="modal-title" id="exampleModalLabel">انضم الينا</h2>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="courseForm" (ngSubmit)="onSubmitCourse()">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="exampleInputNumber" style="font-size: 20px;font-weight: bolder;"> الاسم</label>
+                <input type="text" class="form-control" id="exampleInputNumber" placeholder="ادخل الاسم" formControlName="name">
+              </div>
 
+              <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="text-danger">
+                <div>{{ name?.errors?.['required'] ? 'الاسم مطلوب' : '' }}</div>
+              </div>
 
+              <div class="form-group my-3">
+                <label for="exampleInputEmail1" style="font-size: 20px;font-weight: bolder;">البريد الإلكتروني </label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ادخل البريد الإلكتروني" formControlName="email">
+              </div>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h2 class="modal-title" id="exampleModalLabel">انضم الينا </h2>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="exampleInputNumber" style="font-size: 20px;font-weight: bolder;"> الاسم</label>
-                            <input type="text" class="form-control" id="exampleInputNumber" placeholder="ادخل الاسم">
-                        </div>
-
-                        <div class="form-group my-3">
-                            <label for="exampleInputEmail1" style="font-size: 20px;font-weight: bolder;">البريد الاكترونى </label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ادخل البريد الاكترونى">
-                            <!-- <small id="emailHelp" class="form-text text-muted">لن نشارك البريد مع أحد اطمن</small> -->
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputNumber" style="font-size: 20px;font-weight: bolder;">رقم الهاتف (whats app)</label>
-                            <input type="number" class="form-control" id="exampleInputNumber" placeholder="ادخل رقم الهاتف">
-                        </div>
-                        <div class="form-group my-3">
-                            <label for="exampleInputNumber" style="font-size: 20px;font-weight: bolder;"> وصف</label>
-                            <textarea class="form-control" name="description" id="description" rows="2"></textarea>
-                        </div>                        
-                        <div class="form-group mt-3">
-                            <label for="exampleInputNumber" style="font-size: 20px;font-weight: bolder;"> ارفع ملف</label>
-                            <input type="file">
-                        </div>
-                    </div>
+              <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
+                <div *ngIf="email?.errors?.['required'] && (email?.dirty || email?.touched)" class="text-danger">
+                  <div>{{ email?.errors?.['required'] ? 'البريد الإلكتروني مطلوب' : '' }}</div>
                 </div>
-            </div>
+                
+                <div *ngIf="email?.errors?.['email'] && (email?.dirty || email?.touched)" class="text-danger">
+                  <div>{{ email?.errors?.['email'] ? 'البريد الإلكتروني غير صالح' : '' }}</div>
+                </div>
+                 </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+              <div class="form-group">
+                <label for="exampleInputNumber" style="font-size: 20px;font-weight: bolder;">رقم الهاتف (whats app)</label>
+                <input type="text" class="form-control" id="exampleInputNumber" placeholder="ادخل رقم الهاتف" formControlName="phoneNumber">
+              </div>
+
+              <div *ngIf="phoneNumber?.errors?.['required'] && (phoneNumber?.dirty || phoneNumber?.touched)" class="text-danger">
+                <div>{{ phoneNumber?.errors?.['required'] ? 'رقم الهاتف مطلوب' : '' }}</div>
+              </div>
+              
+              <div *ngIf="phoneNumber?.errors?.['pattern'] && (phoneNumber?.dirty || phoneNumber?.touched)" class="text-danger">
+                <div>{{ phoneNumber?.errors?.['pattern'] ? 'رقم الهاتف يجب أن يحتوي على أرقام فقط' : '' }}</div>
+              </div>
+              
+
+              <div class="form-group my-3">
+                <label for="exampleInputNumber" style="font-size: 20px;font-weight: bolder;"> وصف</label>
+                <textarea class="form-control" name="description" id="description" rows="2" formControlName="description"></textarea>
+              </div>
+
+              <div *ngIf="description?.invalid && (description?.dirty || description?.touched)" class="text-danger">
+                <div>{{ description?.errors?.['required'] ? 'الوصف مطلوب' : '' }}</div>
+              </div>
+
+              <div class="form-group mt-3">
+                <label for="exampleInputNumber" style="font-size: 20px;font-weight: bolder;"> ارفع ملف</label>
+                <input type="file" formControlName="file" (change)="onFileChange($event,'Coursing')">
+              </div>
+
+              <div *ngIf="file?.invalid && (file?.dirty || file?.touched)" class="text-danger">
+                <div>{{ file?.errors?.['required'] ? 'يرجى اختيار ملف' : '' }}</div>
+              </div>
             </div>
-        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+            <button type="submit" class="btn btn-primary"  >حفظ التغييرات</button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
 
+  
 
-<div class="modal fade" id="exampleCalsultModal" tabindex="-1" aria-labelledby="exampleCalsultModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+<!-- Marooo -->
+<!-- your-modal-component.component.html -->
+<form [formGroup]="modalForm" (ngSubmit)="onSubmit()">
+    <div class="modal fade" id="exampleCalsultModal" tabindex="-1" aria-labelledby="exampleCalsultModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <div class="modal-header text-center">
-                <h2 class="modal-title" id="exampleModalLabel">انضم الينا </h2>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="exampleInputNumber" style="font-size: 20px;font-weight: bolder;"> الاسم</label>
-                            <input type="text" class="form-control" id="exampleInputNumber" placeholder="ادخل الاسم">
-                        </div>
-
-                        <div class="form-group my-3">
-                            <label for="exampleInputEmail1" style="font-size: 20px;font-weight: bolder;">البريد الاكترونى </label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ادخل البريد الاكترونى">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputNumber" style="font-size: 20px;font-weight: bolder;">رقم الهاتف (whats app)</label>
-                            <input type="number" class="form-control" id="exampleInputNumber" placeholder="ادخل رقم الهاتف">
-                        </div>
-                        <div class="form-group my-3">
-                            <label for="exampleInputNumber" style="font-size: 20px;font-weight: bolder;"> وصف</label>
-                            <textarea class="form-control" name="description" id="description" rows="2"></textarea>
-                        </div>                        
-                        <div class="form-group my-3">
-                            <label for="exampleInputNumber" style="font-size: 20px;font-weight: bolder;"> ارفع ملف</label>
-                            <input type="file">
-                        </div>
-                    </div>
+          <div class="modal-header text-center">
+            <h2 class="modal-title" id="exampleModalLabel">انضم الينا </h2>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                <!-- Name -->
+                <div class="form-group">
+                  <label for="exampleInputNumber" style="font-size: 20px; font-weight: bolder;">الاسم</label>
+                  <input type="text" class="form-control" id="exampleInputNumber" placeholder="ادخل الاسم" formControlName="name">
+                  <div *ngIf="modalForm.get('name')?.hasError('required') && modalForm.get('name')?.touched">
+                    الاسم مطلوب.
+                  </div>
+                  <div *ngIf="modalForm.get('name')?.hasError('maxlength') && modalForm.get('name')?.touched">
+                    الاسم يجب أن يكون أقل من 50 حرفًا.
+                  </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-12">
-                        <label class="form-label select-label text-end" >اختر ساعات الاستشاره</label>
-                        <select class="form-select form-select-lg mb-3" aria-label="اختر ساعات الاستشاره">
-                            <option value="1">ساعة</option>
-                            <option value="2">ساعتين</option>
-                            <option value="3">ثلاث ساعات</option>
-                            <option value="4">أربع ساعات</option>
-                        </select>
-                    </div>
+  
+                <!-- Email -->
+                <div class="form-group my-3">
+                  <label for="exampleInputEmail1" style="font-size: 20px; font-weight: bolder;">البريد الاكترونى</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ادخل البريد الاكترونى"
+                    formControlName="email">
+                  <div *ngIf="modalForm.get('email')?.hasError('required') && modalForm.get('email')?.touched">
+                    البريد الإلكتروني مطلوب.
+                  </div>
+                  <div *ngIf="modalForm.get('email')?.hasError('email') && modalForm.get('email')?.touched">
+                    البريد الإلكتروني غير صحيح.
+                  </div>
+                  <div *ngIf="modalForm.get('email')?.hasError('maxlength') && modalForm.get('email')?.touched">
+                    البريد الإلكتروني يجب أن يكون أقل من 50 حرفًا.
+                  </div>
                 </div>
+  
+                <!-- Phone Number -->
+                <div class="form-group">
+                  <label for="exampleInputNumber" style="font-size: 20px; font-weight: bolder;">رقم الهاتف (whats app)</label>
+                  <input type="text" class="form-control" id="exampleInputNumber" placeholder="ادخل رقم الهاتف" formControlName="phoneNumber">
+                  <div *ngIf="modalForm.get('phoneNumber')?.hasError('required') && modalForm.get('phoneNumber')?.touched">
+                    رقم الهاتف مطلوب.
+                  </div>
+                  <div *ngIf="modalForm.get('phoneNumber')?.hasError('pattern') && modalForm.get('phoneNumber')?.touched">
+                    الرقم يجب أن يكون من 10 أرقام.
+                  </div>
+                </div>
+  
+                <!-- Description -->
+                <div class="form-group my-3">
+                  <label for="exampleInputNumber" style="font-size: 20px; font-weight: bolder;"> وصف</label>
+                  <textarea class="form-control" name="description" id="description" rows="2" formControlName="description"></textarea>
+                  <div *ngIf="modalForm.get('description')?.hasError('required') && modalForm.get('description')?.touched">
+                    الوصف مطلوب.
+                  </div>
+                  <div *ngIf="modalForm.get('description')?.hasError('maxlength') && modalForm.get('description')?.touched">
+                    الوصف يجب أن يكون أقل من 200 حرف.
+                  </div>
+                </div>
+  
+                <!-- File -->
+                <div class="form-group my-3">
+                    <label for="exampleInputNumber" style="font-size: 20px; font-weight: bolder;"> ارفع ملف</label>
+                    <input type="file" (change)="onFileChange($event,'Consulting')" formControlName="file">
+                  </div>
+                  
+              </div>
             </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+  
+            <!-- Consultation Hours Dropdown -->
+            <div class="row">
+              <div class="col-12">
+                <label class="form-label select-label text-end">اختر ساعات الاستشاره</label>
+                <select class="form-select form-select-lg mb-3" aria-label="اختر ساعات الاستشاره" formControlName="consultingHoures">
+                  <option value="1">ساعة</option>
+                  <option value="2">ساعتين</option>
+                  <option value="3">ثلاث ساعات</option>
+                  <option value="4">أربع ساعات</option>
+                </select>
+                <div *ngIf="modalForm.get('consultationHours')?.hasError('required') && modalForm.get('consultationHours')?.touched">
+                  اختر ساعات الاستشارة.
+                </div>
+           </div></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
+            <button type="submit" class="btn btn-primary" >حفظ التغيرات </button>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  
