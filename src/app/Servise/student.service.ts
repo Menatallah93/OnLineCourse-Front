@@ -6,6 +6,7 @@ import { Observable, catchError, map, throwError } from 'rxjs';
 import { IInstructor, IInstructorDTO } from '../Shared-Interfase/Instructor';
 import { StudentRequest } from '../Shared-Interfase/Student';
 import { IRequestAppointmentDTO } from '../Shared-Interfase/RequestAppointment';
+import { IStudentProfile } from '../Shared-Interfase/IUserRegister';
 
 @Injectable({
   providedIn: 'root'
@@ -82,6 +83,17 @@ export class StudentService {
       return throwError(() => err.message || "server error");
     }));
   }
-
+  GetStudentWithSubject(id: any): Observable<IStudentProfile> {
+    return this.http.get<IStudentProfile>(`http://localhost:5112/api/Student/${id}`)
+      .pipe(catchError((err) => {
+        return throwError(() => err.message || "server error");
+      }));
+  }
+  UpdateStudent(id: any, updatedData: any): Observable<IStudentProfile> {
+    return this.http.put<IStudentProfile>(`http://localhost:5112/api/Student/UpdateStudent/${id}`, updatedData)
+      .pipe(catchError((err) => {
+        return throwError(() => err.message || "server error");
+      }));
+  }
 
 }

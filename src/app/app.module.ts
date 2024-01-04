@@ -29,6 +29,7 @@ import { AllRequestsComponent } from './all-requests/all-requests.component';
 import { AllAcceptedRequestsComponent } from './all-accepted-requests/all-accepted-requests.component';
 import { AllAcceptedStudentRequestComponent } from './all-accepted-student-request/all-accepted-student-request.component';
 import { AllPenddingStudentRequestComponent } from './all-pendding-student-request/all-pendding-student-request.component';
+import { StudentProfileComponent } from './student-profile/student-profile.component';
 
 
 
@@ -60,6 +61,7 @@ import { AllPenddingStudentRequestComponent } from './all-pendding-student-reque
     AllAcceptedRequestsComponent,
     AllAcceptedStudentRequestComponent,
     AllPenddingStudentRequestComponent,
+    StudentProfileComponent,
 
   ],
 

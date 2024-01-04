@@ -60,7 +60,7 @@ export class InstructorService {
   }
 
   Accept(id: string): Observable<{ response: any, error: any }> {
-    // const headers = this.auth.createHeaders(); 
+    // const headers = this.auth.createHeaders();
     return this.http.put(`http://localhost:5112/api/Admin/AcceptInstructorRequest/${id}`, null)
       .pipe(
         map((response: any) => ({ response, error: null })),
@@ -72,7 +72,7 @@ export class InstructorService {
   }
 
   Rejected(id: string): Observable<{ response: any, error: any }> {
-    // const headers = this.auth.createHeaders(); 
+    // const headers = this.auth.createHeaders();
     return this.http.put(`http://localhost:5112/api/Admin/RejectInstructorRequest/${id}`, null)
       .pipe(
         map((response: any) => ({ response, error: null })),
@@ -105,7 +105,7 @@ export class InstructorService {
 
 
   UpdateInstructor(id: any, updatedData: any): Observable<IInstructorProfile> {
-    return this.http.put<IInstructorProfile>(`http://localhost:5112/api/Instructor/UpdateInstructor/${id}`, updatedData)
+    return this.http.put<IInstructorProfile>(`http://localhost:5112/api/Instructor/UpdateInstructorProfile/${id}`, updatedData)
       .pipe(catchError((err) => {
         return throwError(() => err.message || "server error");
       }));

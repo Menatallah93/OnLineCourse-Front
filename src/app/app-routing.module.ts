@@ -23,6 +23,7 @@ import { SubjectsComponent } from './subjects/subjects.component';
 import { AllRequestsComponent } from './all-requests/all-requests.component';
 import { AllAcceptedRequestsComponent } from './all-accepted-requests/all-accepted-requests.component';
 import { AllPenddingStudentRequestComponent } from './all-pendding-student-request/all-pendding-student-request.component';
+import { StudentProfileComponent } from './student-profile/student-profile.component';
 
 
 
@@ -54,6 +55,8 @@ const routes: Routes = [
   {path:"penddingstudentrequest",component:AllPenddingStudentRequestComponent},
   {path:"acceptedrequests",component:AllAcceptedRequestsComponent},
   { path: "subjects", component: SubjectsComponent },
+  { path: "StudentProfile", component: StudentProfileComponent },
+
 
 ];
 
