@@ -12,6 +12,8 @@ import { IStudentProfile } from '../Shared-Interfase/IUserRegister';
   providedIn: 'root'
 })
 export class StudentService {
+  private apiUrl = 'http://localhost:5112/api';
+
   studentLevel: string = "";
   requestSubject: ISubject = {
     id: 0,
@@ -32,14 +34,14 @@ export class StudentService {
   }
 
   getInstructorBySubjectID(subjectID: number): Observable<IInstructorDTO[]> {
-    return this.http.get<IInstructorDTO[]>(`http://localhost:5112/api/Instructor/GetBySubject/${subjectID}`)
+    return this.http.get<IInstructorDTO[]>(`${this.apiUrl}/Instructor/GetBySubject/${subjectID}`)
       .pipe(catchError((err) => {
         return throwError(() => err.message || "server error");
       }));
   }
 
   addRequestToTakeSubject(studentRequest: StudentRequest): Observable<any> {
-    return this.http.post('http://localhost:5112/api/Student/StudentRequestToTakeSubject', studentRequest)
+    return this.http.post(`${this.apiUrl}/Student/StudentRequestToTakeSubject`, studentRequest)
       .pipe(
         map((response: any) => ({ response, error: null })),
         catchError((error) => {
@@ -51,7 +53,7 @@ export class StudentService {
 
 
   getAllPendingStudentRequest(): Observable<IRequestAppointmentDTO[]> {
-    return this.http.get<IRequestAppointmentDTO[]>('http://localhost:5112/api/Student/GetAllPendingRequest').pipe(
+    return this.http.get<IRequestAppointmentDTO[]>(`${this.apiUrl}/Student/GetAllPendingRequest`).pipe(
       catchError((error) => {
         // Handle and return the error message
         console.error('Error:', error);
@@ -61,7 +63,7 @@ export class StudentService {
   }
 
   getAllAcceptedStudentRequest(): Observable<IRequestAppointmentDTO[]> {
-    return this.http.get<IRequestAppointmentDTO[]>('http://localhost:5112/api/Student/GetAllAcceptedRequest').pipe(
+    return this.http.get<IRequestAppointmentDTO[]>(`${this.apiUrl}/Student/GetAllAcceptedRequest`).pipe(
       catchError((error) => {
         // Handle and return the error message
         console.error('Error:', error);
@@ -71,14 +73,14 @@ export class StudentService {
   }
 
   acceptStudentRequest(id: number): Observable<IRequestAppointmentDTO> {
-    return this.http.put<IRequestAppointmentDTO>(`http://localhost:5112/api/Admin/AcceptStudentRequest/${id}` , null)
+    return this.http.put<IRequestAppointmentDTO>(`${this.apiUrl}/Admin/AcceptStudentRequest/${id}` , null)
     .pipe(catchError((err) => {
       return throwError(() => err.message || "server error");
     }));
   }
 
   rejectedStudentRequest(id: number): Observable<IRequestAppointmentDTO> {
-    return this.http.put<IRequestAppointmentDTO>(`http://localhost:5112/api/Admin/RejectStudentRequest/${id}`, null)
+    return this.http.put<IRequestAppointmentDTO>(`${this.apiUrl}/Admin/RejectStudentRequest/${id}`, null)
     .pipe(catchError((err) => {
       return throwError(() => err.message || "server error");
     }));
