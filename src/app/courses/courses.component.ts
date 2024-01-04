@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -23,9 +24,14 @@ export class CoursesComponent {
 
   displayedCourses: any[] = [];
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    // this.route.params.subscribe(params => {
+    //   const studentID = +params['studentID']; 
+    //   console.log('Student ID:', studentID);
+    // });
+
     this.calculateTotalPages();
     this.displayCourses();
   }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IStudentRequestForInstructor } from '../Shared-Interfase/InstructorSubject';
 import { InstructorService } from '../Servise/instructor.service';
 import { AuthorizeService } from '../Servise/authorize.service';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-instractor-table',
@@ -10,19 +11,31 @@ import { AuthorizeService } from '../Servise/authorize.service';
   styleUrls: ['./instractor-table.component.scss'],
 })
 export class InstractorTableComponent implements OnInit {
-  tableData: any[] = [];
+  selectedDay: string | null = null;
+  tableData: IStudentRequestForInstructor[] = [];
+  filtTable: IStudentRequestForInstructor[] = [];
+  itemsPerPage = 7;
+  currentPage = 1;
+  totalPages = 1;
   instructorID: string = '';
-  route: any;
   constructor(
     private auth: AuthorizeService,
-    private instr: InstructorService
-  ) {}
+    private instr: InstructorService,
+    private router: Router ) 
+  {}
+
+  get displayedRows(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.filtTable.slice(startIndex, startIndex + this.itemsPerPage);
+  }
 
   ngOnInit(): void {
     this.instructorID = this.auth.getTokenID();
     this.instr.GetRequestForInstructor(this.instructorID).subscribe(
       (data) => {
-        this.tableData = data;
+        this.tableData = data.map((row) => ({ ...row, isEditing: false, isAddMode: false }));
+        this.filtTable = this.tableData;
+        this.updatePagination();
       },
       (error) => {
         console.error('Error fetching data:', error);
@@ -30,8 +43,17 @@ export class InstractorTableComponent implements OnInit {
     );
   }
 
+  updatePagination() {
+    this.totalPages = Math.ceil(this.filtTable.length / this.itemsPerPage);
+  }
+
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
+  }
+
   startEditing(row: any) {
-    // Set isEditing property to true to show input fields for editing
     row.isEditing = true;
     row.isAddMode = true;
   }
@@ -40,24 +62,48 @@ export class InstractorTableComponent implements OnInit {
     if (row.isEditing) {
       row.isAddMode = false;
       // Update row and set isEditing to false
+      this.instr.updateAppointmentForUser(row.customAppointmentId, {
+        lectureDate: row.lectureDate,
+        dayOfWeek: row.dayOfWeek
+      }).subscribe({
+        next: data => {
+          console.log(data);
+        }
+      })
       row.isEditing = false;
+      this.updatePagination();
     }
   }
 
-    navigateTo(studentID: number) {
-      this.route.navigate(['/courses']);
-  }
 
   deleteRow(row: any) {
     const index = this.tableData.indexOf(row);
     if (index !== -1) {
       this.tableData.splice(index, 1);
+      this.updatePagination();
     }
   }
   localTime = new Date();
 
   getLocalTime(): string {
     return this.localTime.toLocaleTimeString();
+  }
+
+  filterTable() {
+    if (this.selectedDay !== "null") {
+      
+      this.filtTable = this.tableData.filter((row) => row.dayOfWeek.toString() === this.selectedDay?.toString());
+    } else {
+      
+      this.instr.GetRequestForInstructor(this.instructorID).subscribe(
+        (data) => {
+          this.filtTable = data.map((row) => ({ ...row, isEditing: false, isAddMode: false }));
+        },
+        (error) => {
+          console.error('Error fetching data:', error);
+        }
+      );
+    }
   }
 
   // getLocalTime(): string {
