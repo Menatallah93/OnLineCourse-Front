@@ -27,6 +27,8 @@ import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { AllRequestsComponent } from './all-requests/all-requests.component';
 import { AllAcceptedRequestsComponent } from './all-accepted-requests/all-accepted-requests.component';
+import { CoursesRequestComponent } from './courses-request/courses-request.component';
+import { ConsultingRequestComponent } from './consulting-request/consulting-request.component';
 
 
 
@@ -61,6 +63,8 @@ const routes: Routes = [
  {path:"acceptedequests",component:AllAcceptedRequestsComponent},
 
  {path:"subjects",component:SubjectsComponent},
+ {path:"courses-request",component:CoursesRequestComponent},
+ {path:"consulting-request",component:ConsultingRequestComponent},
 
  // Maroooooooooo
  // Manoraaaa

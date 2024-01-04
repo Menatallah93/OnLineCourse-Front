@@ -31,6 +31,9 @@ import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { AllRequestsComponent } from './all-requests/all-requests.component';
 import { AllAcceptedRequestsComponent } from './all-accepted-requests/all-accepted-requests.component';
+import { CoursesRequestComponent } from './courses-request/courses-request.component';
+import { ConsultingRequestComponent } from './consulting-request/consulting-request.component';
+import { RequewstDetailsComponent } from './requewst-details/requewst-details.component';
 
 
 
@@ -66,6 +69,9 @@ import { AllAcceptedRequestsComponent } from './all-accepted-requests/all-accept
     SubjectsComponent,
     AllRequestsComponent,
     AllAcceptedRequestsComponent,
+    CoursesRequestComponent,
+    ConsultingRequestComponent,
+    RequewstDetailsComponent,
 
   ],
 

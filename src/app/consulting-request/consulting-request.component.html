@@ -1,0 +1,83 @@
+<div class="container my-5">
+  <!--Table-->
+  <table class="table table-hover table-fixed">
+  
+      <!--Table head-->
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>الاسم</th>
+          <th>عدد ساعات الاستشاره</th>
+          <th>الايميل</th>
+          <th>رقم الموبايل</th>
+          <th></th>
+          
+        </tr>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let item of PendingRequests">
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.name}}</td>
+          <td>{{item.consultingHoures}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.phoneNumber}}</td>
+          <td>
+  
+              <button type="button" class="btn btn-danger rounded-3"  
+              data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+              (click)="ShowModal(item)"
+              >
+  
+                <i class="fa fa-eye" style="font-size:20px; cursor: pointer;"></i>
+              </button>
+            </td>
+         
+        </tr>
+       
+      </tbody>
+      <!--Table body-->
+    
+    </table>
+    <!--Table-->
+  </div>
+  
+  <!-- Modalllllllllllllllllllllllllll -->
+  
+  <!-- Button trigger modal -->
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title start" id="staticBackdropLabel">تفاصيل الطلب</h5>
+          <div class="text-end">
+            <button type="button" class="btn-close text-end" data-bs-dismiss="modal" aria-label="Close"></button>
+  
+          </div>
+        </div>
+        <div class="modal-body">
+          <div>
+            {{SpesificRequest.description}}
+          </div>
+          <div class="text-start" *ngIf="SpesificRequest.file!=''">
+            <a [href]="SpesificRequest.file" download="filename.pdf" target="_blank">
+              <img src="assets/img/file.png" width="100px" height="100px">
+            </a>
+          </div>
+          <div>
+          
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="AccptRequest(SpesificRequest.id)" class="btn btn-secondary rounded-3" data-bs-dismiss="modal" style="background-color:rgb(6, 76, 6);">الموافقه علي الطلب</button>
+          <button type="button" (click)="RejectRequest(SpesificRequest.id)" class="btn btn-secondary rounded-3" data-bs-dismiss="modal" style="background-color: #dc3545;">رفض الطلب</button>
+          <!-- <--<button type="button"  class="btn btn-secondary rounded-3" data-bs-dismiss="modal" >  
+            قفل
+          </button> --> 
+        </div>
+      </div>
+    </div>
+  </div>
