@@ -25,6 +25,7 @@ import { AllAcceptedRequestsComponent } from './all-accepted-requests/all-accept
 import { CoursesRequestComponent } from './courses-request/courses-request.component';
 import { ConsultingRequestComponent } from './consulting-request/consulting-request.component';
 import { AllPenddingStudentRequestComponent } from './all-pendding-student-request/all-pendding-student-request.component';
+import { StudentProfileComponent } from './student-profile/student-profile.component';
 
 
 
@@ -57,6 +58,8 @@ const routes: Routes = [
   {path:"penddingstudentrequest",component:AllPenddingStudentRequestComponent},
   {path:"acceptedrequests",component:AllAcceptedRequestsComponent},
   { path: "subjects", component: SubjectsComponent },
+  { path: "StudentProfile", component: StudentProfileComponent },
+
 
 ];
 

@@ -60,7 +60,11 @@ export class InstructorService {
   }
 
   Accept(id: string): Observable<{ response: any, error: any }> {
+
+    
+
     return this.http.put(`${this.apiUrl}/Admin/AcceptInstructorRequest/${id}`, null)
+
       .pipe(
         map((response: any) => ({ response, error: null })),
         catchError((error) => {
@@ -71,7 +75,9 @@ export class InstructorService {
   }
 
   Rejected(id: string): Observable<{ response: any, error: any }> {
+
     return this.http.put(`${this.apiUrl}/Admin/RejectInstructorRequest/${id}`, null)
+
       .pipe(
         map((response: any) => ({ response, error: null })),
         catchError((error) => {
@@ -103,7 +109,9 @@ export class InstructorService {
 
 
   UpdateInstructor(id: any, updatedData: any): Observable<IInstructorProfile> {
+
     return this.http.put<IInstructorProfile>(`${this.apiUrl}/Instructor/UpdateInstructor/${id}`, updatedData)
+
       .pipe(catchError((err) => {
         return throwError(() => err.message || "server error");
       }));

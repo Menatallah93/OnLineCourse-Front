@@ -1,8 +1,7 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "types": ["bootstrap" , "jquery"],
+    "types": ["bootstrap" ],
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -24,7 +23,7 @@
       "ES2022",
       "dom"
     ],
-    
+
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

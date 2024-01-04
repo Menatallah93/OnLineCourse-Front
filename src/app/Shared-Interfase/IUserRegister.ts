@@ -30,6 +30,15 @@ export interface IInstructorProfile{
     subjects: string[];
 }
 
+export interface IStudentProfile{
+  id:string
+  name: string,
+  numberofhours :number,
+  phone: string;
+  email: string;
+  subjects: string[];
+}
+
 
 
 
