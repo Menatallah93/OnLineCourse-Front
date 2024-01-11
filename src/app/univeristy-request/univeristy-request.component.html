@@ -1,0 +1,42 @@
+<div class="container">
+    <div>
+       
+              <form [formGroup]="courseForm" (ngSubmit)="onSubmitCourse()">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="exampleInputNumber" style="font-size: 20px;font-weight: bolder;"> اسم الماده</label>
+                      <input type="text" class="form-control" id="exampleInputNumber" placeholder="ادخل اسم الماده" formControlName="name">
+                    </div>
+      
+                    <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="text-danger">
+                      <div>{{ name?.errors?.['required'] ? 'الاسم مطلوب' : '' }}</div>
+                    </div>
+      
+                    <div class="form-group my-3">
+                      <label for="exampleInputNumber" style="font-size: 20px;font-weight: bolder;"> وصف</label>
+                      <textarea class="form-control" name="description" id="description" rows="2" formControlName="description"></textarea>
+                    </div>
+      
+                    <div *ngIf="description?.invalid && (description?.dirty || description?.touched)" class="text-danger">
+                      <div>{{ description?.errors?.['required'] ? 'الوصف مطلوب' : '' }}</div>
+                    </div>
+      
+                    <div class="form-group mt-3">
+                      <label for="exampleInputNumber" style="font-size: 20px;font-weight: bolder;"> ارفع ملف</label>
+                      <input type="file" formControlName="file" (change)="onFileChange($event)">
+                    </div>
+      
+                    <div *ngIf="file?.invalid && (file?.dirty || file?.touched)" class="text-danger">
+                      <div>{{ file?.errors?.['required'] ? 'يرجى اختيار ملف' : '' }}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="my-3 text-start">
+                  <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button> -->
+                  <button type="submit" class="btn btn-primary"  >حفظ التغييرات</button>
+                </div>
+              </form>
+            </div>
+          </div>
+       

@@ -26,6 +26,8 @@ import { CoursesRequestComponent } from './courses-request/courses-request.compo
 import { ConsultingRequestComponent } from './consulting-request/consulting-request.component';
 import { AllPenddingStudentRequestComponent } from './all-pendding-student-request/all-pendding-student-request.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { UniveristyRequestComponent } from './univeristy-request/univeristy-request.component';
+import { AllUniveristyRequestsComponent } from './all-univeristy-requests/all-univeristy-requests.component';
 
 
 
@@ -58,9 +60,12 @@ const routes: Routes = [
   {path:"penddingstudentrequest",component:AllPenddingStudentRequestComponent},
   {path:"acceptedrequests",component:AllAcceptedRequestsComponent},
   { path: "subjects", component: SubjectsComponent },
-  { path: "StudentProfile", component: StudentProfileComponent },
+  { path: "CourseRequest", component: CoursesRequestComponent },
+  { path: "ConsultingRequest", component: ConsultingRequestComponent },
+  { path: "univeristy", component: UniveristyRequestComponent },
+  { path: "all-univeristy-requests", component: AllUniveristyRequestsComponent },
 
-
+  // m4341398
 ];
 
 @NgModule({
