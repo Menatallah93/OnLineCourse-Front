@@ -1,3 +1,5 @@
+import { TutorialType } from "./IConsulting";
+
 export interface IUserRegister{
     id?: number,
     name:string,
@@ -37,6 +39,18 @@ export interface IStudentProfile{
   phone: string;
   email: string;
   subjects: string[];
+}
+export interface IStudentTotorial{
+  instructorName:string;
+  subjectName:string;
+  tutorialDatas: tutorialDatas[];
+
+
+}
+
+export interface tutorialDatas {
+  subjectTutorial: string;
+  tutorialType: TutorialType;
 }
 
 

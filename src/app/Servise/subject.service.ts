@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError, map } from 'rxjs';
-import { ISubject } from '../Shared-Interfase/ISubject';
+import { ISubject, StudentLibraryDTO } from '../Shared-Interfase/ISubject';
 
 @Injectable({
   providedIn: 'root'
@@ -58,4 +58,10 @@ export class SubjectService {
       );
   }
 
+
+  getSubjectsByStudent(studentId: string): Observable<StudentLibraryDTO[]> {
+    return this.Http.get<StudentLibraryDTO[]>(`${this.apiUrl}/Student/subjects/${studentId}`);
+  }
 }
+
+
