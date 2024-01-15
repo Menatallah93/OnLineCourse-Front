@@ -27,16 +27,17 @@ export class SubjectsComponent {
     this.serv.Delete(id).subscribe
      (
         () => {
-  
+
           console.log('Before deletion:', this.subjects);
           this.subjects = this.subjects.filter((sub) => sub.id !== id);
           console.log('After deletion:', this.subjects);
         },
         (error) => {
           console.error('Error deleting Subject:', error);
-  
+
         }
       );
   }
   
+
 }

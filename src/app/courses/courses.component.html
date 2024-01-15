@@ -4,27 +4,27 @@
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
       <h6 class="section-title bg-white text-center text-primary px-3">دروس</h6>
       <div class="d-flex justify-content-center align-items-center flex-wrap">
-        <h1 class="mb-5" style="margin-right: 10px">الكيمياء</h1>
+        <h1 class="mb-5" style="margin-right: 10px">{{ displayedCourses[0].subjectName }}</h1>
         <button
-  type="button"
-  data-bs-toggle="modal"
-  data-bs-target="#exampleModal"
-  style="margin-right: 90%; width: 8%"
-  class="btn btn-primary mt-4"
->
-  <i class="fas fa-plus"></i>
-</button>
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          style="margin-right: 90%; width: 8%"
+          class="btn btn-primary mt-4"
+        >
+          <i class="fas fa-plus"></i>
+        </button>
       </div>
     </div>
 
     <div>
-      <h1 class="mb-5">استاذ: احمد محمد</h1>
+      <h1 class="mb-5">{{ displayedCourses[0].instructorName }}</h1>
     </div>
 
     <div class="row g-4 justify-content-center align-items-stretch">
       <div
         class="col-lg-3 col-md-6 wow fadeInUp"
-        *ngFor="let course of displayedCourses; let i = index"
+        *ngFor="let course of displayedCourses[0].tutorialDatas; let i = index"
         data-wow-delay="0.1s"
       >
         <div class="course-item bg-light d-flex flex-column h-100">
@@ -56,7 +56,7 @@
             </div>
           </div>
           <div class="p-4 pb-0 flex-grow-1">
-            <h5 class="mb-4">{{ course.title }}</h5>
+            <h5 class="mb-4">{{ course.subjectTutorial }}</h5>
           </div>
           <div class="m-4 mt-0 d-flex justify-content-end align-items-end">
             <button class="btn btn-primary">تحميل ملف الدرس</button>
@@ -121,11 +121,17 @@
     <div class="modal-content">
       <div class="modal-header text-center">
         <h2 class="modal-title" id="exampleModalLabel">انضم الينا</h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body" style="padding-top: 40px">
-        <div >
+        <div>
           <div class="container">
-            <form>
+            <form #tutorialForm="ngForm">
               <div class="form-group text-end">
                 <label for="formGroupExampleInput2">ترتيب الدرس</label>
                 <input
@@ -133,6 +139,9 @@
                   class="form-control"
                   id="formGroupExampleInput2"
                   placeholder="الدرس الاول ...."
+                  name="tutorialName"
+                  [(ngModel)]="uploadModel.tutorialName"
+                  required
                 />
               </div>
 
@@ -140,17 +149,23 @@
                 class="form-group text-end d-flex justify-content-sm-between mt-3"
               >
                 <label for="formFileLg">ارفاق ملف</label>
+
                 <button (click)="addItem()" class="btn btn-danger">
                   اضف ملف اخر
                 </button>
               </div>
+
               <div>
-                <div *ngFor="let item of itemList">
+                <div *ngFor="let item of itemList; let i = index">
                   <input
                     class="form-control form-control-lg my-3"
                     id="formFileLg"
                     type="file"
+                    name="tutorialFiles"
+                    [(ngModel)]="uploadModel.tutorial[i].subjectTutorial"
+                    required
                   />
+
                 </div>
               </div>
             </form>
@@ -158,9 +173,18 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-    </div>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="saveChanges()"
+          [disabled]="tutorialForm.invalid"
+        >
+          Save changes
+        </button>
+      </div>
     </div>
   </div>
 </div>

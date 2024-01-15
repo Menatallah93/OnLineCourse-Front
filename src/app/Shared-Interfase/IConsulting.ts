@@ -17,3 +17,22 @@ export interface ICoursing{
     description :string,
     file:string
 }
+export interface UploadTutorialModel {
+  studentId: string;
+  instructorId: string;
+  subjcetId: number;
+  tutorial: TutorialData[];
+  tutorialName: string;
+}
+
+export interface TutorialData {
+  subjectTutorial: string;
+  tutorialType: TutorialType;
+}
+
+
+export enum TutorialType {
+  Video = 1,
+  PDF = 2,
+  Photo = 4,
+}

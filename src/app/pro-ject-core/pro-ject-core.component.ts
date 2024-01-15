@@ -17,7 +17,7 @@ export class ProJectCoreComponent {
   imagePath:string="";
   selectedFile!: File;
   constructor(private fb: FormBuilder,private imageserv:UploadImageService
-    ,private serv:ConsultingService,private courseServ:CoursesServService) 
+    ,private serv:ConsultingService,private courseServ:CoursesServService)
   {
     this.modalForm = this.fb.group({
       name: ['', Validators.required],
@@ -38,15 +38,15 @@ export class ProJectCoreComponent {
    }
    onFileChange(event: any, type: string) {
     this.selectedFile = event.target.files[0];
-  
+
     if (this.selectedFile) {
       const formData = new FormData();
       formData.append('file', this.selectedFile);
-  
+
       this.imageserv.UploadImage(formData).subscribe({
         next: (data: any) => {
           console.log(data);
-  
+
           // Assuming the pathImage is the correct property from the response
           this.imagePath = data.pathImage;
                 console.log(this.imagePath)
@@ -61,15 +61,15 @@ export class ProJectCoreComponent {
               file: this.imagePath,
             });
           }
-  
+
           console.log("Form patched:", this.courseForm.value, this.modalForm.value);
         },
         error: (err) => console.error('Error during subscription:', err),
       });
     }
   }
-  
-  get name() { return this.courseForm.get('name'); }
+
+get name() { return this.courseForm.get('name'); }
 get email() { return this.courseForm.get('email'); }
 get phoneNumber() { return this.courseForm.get('phoneNumber'); }
 get description() { return this.courseForm.get('description'); }

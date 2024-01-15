@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MaterialService } from '../Servise/material.service';
+import { TutorialType, UploadTutorialModel } from '../Shared-Interfase/IConsulting';
+import { AuthorizeService } from '../Servise/authorize.service';
+import { UploadImageService } from '../Servise/upload-image.service';
+import { IStudentTotorial, tutorialDatas } from '../Shared-Interfase/IUserRegister';
+import { StudentService } from '../Servise/student.service';
 
 @Component({
   selector: 'app-courses',
@@ -7,43 +13,46 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent {
-  courses = [
-    { id: 1, title: 'الدرس الاول : الكيمياء ' },
-    { id: 2, title: 'الدرس الثاني : الذرة' },
-    { id: 3, title: 'الدرس الثالث :التركيب الكيميائي للذرة' },
-    { id: 4, title: 'الدرس الرابع :التوزيع الالكتروني للذرة' },
-    { id: 5, title: 'الدرس الخامس : الجدول الدوري الحديث' },
-    { id: 6, title: 'الدرس السادس : اي شي ' },
-    { id: 7, title: 'الدرس السابع : اي شي ' },
-    { id: 8, title: 'الدرس الثامن : اي شي ' },
-  ];
+  displayedCourses: IStudentTotorial[]=[];
+  tutorialDatas: tutorialDatas[]=[];
 
   coursesPerPage = 4;
   currentPage = 1;
   totalPages: number = 0;
 
-  displayedCourses: any[] = [];
+  getStudentTutorials() {
+    const studentId = this.auth.getTokenID(); // Replace with the actual student ID
+    this.student.GetStudentTatourial(studentId)
+      .subscribe(
+        (data: IStudentTotorial[]) => {
+          this.displayedCourses = data;
+          console.log(this.displayedCourses);
+          // this.calculateTotalPages();
+          // this.displayCourses();
+        },
+        error => {
+          console.error('Error fetching student tutorials:', error);
+        }
+      );
+  }
 
-  constructor(private route: ActivatedRoute) {}
+
 
   ngOnInit(): void {
-    // this.route.params.subscribe(params => {
-    //   const studentID = +params['studentID']; 
-    //   console.log('Student ID:', studentID);
-    // });
+    this.getStudentTutorials();
 
-    this.calculateTotalPages();
-    this.displayCourses();
+
   }
 
   calculateTotalPages(): void {
-    this.totalPages = Math.ceil(this.courses.length / this.coursesPerPage);
+    this.totalPages = Math.ceil(this.displayedCourses.length / this.coursesPerPage);
   }
 
   displayCourses(): void {
+    debugger
     const startIndex = (this.currentPage - 1) * this.coursesPerPage;
     const endIndex = startIndex + this.coursesPerPage;
-    this.displayedCourses = this.courses.slice(startIndex, endIndex);
+    this.displayedCourses = this.displayedCourses.slice(startIndex, endIndex);
   }
 
   onPageChange(page: number): void {
@@ -56,10 +65,74 @@ export class CoursesComponent {
   totalPagesArray(): number[] {
     return Array(this.totalPages).fill(0).map((_, index) => index + 1);
   }
-  itemList: number[] = [];
+
+
+
+  uploadModel: UploadTutorialModel = {
+    studentId: '',
+    instructorId: '',
+    subjcetId: 0,
+    tutorial: [
+      {
+        subjectTutorial: '',
+        tutorialType: TutorialType.Video
+      }
+    ],
+    tutorialName: ''
+  };
+  imagePath: string = "";
+  selectedFile!: File;
+
+  constructor(private serv: MaterialService, private auth: AuthorizeService, private imageserv: UploadImageService,private student:StudentService) { }
+  instructorId: string = this.auth.getTokenID();
+  studentId: string = '2755130b-2868-444e-b407-93ae4b6dfaaf';
+  subjcetId: number = 1;
+  onFileChange(event: any, type: string) {
+    this.selectedFile = event.target.files[0];
+
+    if (this.selectedFile) {
+      const formData = new FormData();
+      formData.append('file', this.selectedFile);
+
+      this.imageserv.UploadImage(formData).subscribe({
+        next: (data: any) => {
+          console.log(data);
+          this.imagePath = data.pathImage;
+          console.log(this.imagePath);
+
+          this.uploadModel.tutorial[0].subjectTutorial = this.imagePath;
+        },
+        error: (error) => {
+          console.error('Upload failed:', error);
+        }
+      });
+    }
+  }
+  itemList: any[] = [];
 
   addItem() {
+    this.itemList.push({});
+    this.uploadModel.tutorial.push({
+      subjectTutorial: '',
+      tutorialType: TutorialType.PDF
+    });
 
-    this.itemList.push(1);
+  }
+
+  saveChanges() {
+    this.uploadModel.studentId = this.studentId;
+    this.uploadModel.instructorId = this.instructorId;
+    this.uploadModel.subjcetId = this.subjcetId;
+
+
+
+    this.serv.addmaterial(this.uploadModel).subscribe(
+      (response) => {
+        console.log('Upload successful:', response);
+      },
+      (error) => {
+        console.error('Upload failed:', error);
+      }
+    );
   }
 }
