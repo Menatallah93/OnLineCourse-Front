@@ -1,0 +1,110 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 30%;
+  height: 60vh;
+  overflow-y: auto;
+}
+.card::-webkit-scrollbar {
+  width: 10px;
+}
+.card::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+.card::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+span {
+  display: flex;
+  margin-bottom: 10px;
+}
+h3, h2 {
+  margin: 0;
+  margin-top: 2px;
+  color: #555;
+}
+h3 {
+  font-size: 18px;
+}
+h2 {
+  font-size: 22px;
+  margin: 0px 5px; 
+}
+p {
+  margin: 5px 0;
+  color: #777;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+li {
+  margin-bottom: 8px;
+  padding: 8px;
+  background-color: #f1f1f1;
+  border-radius: 4px;
+}
+.edit-item {
+  list-style: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.text-item {
+  flex: 1;
+}
+
+.edit-input {
+  flex: 1;
+  display: flex;
+  gap: 5px;
+}
+
+.edit-icon {
+  margin-left: 10px;
+}
+
+.updated-appointment {
+  background-color: #d4edda; 
+  border-color: #c3e6cb;
+}
+
+.updated-appointment .edit-icon {
+  display: none;
+}
+
+.not-updated-appointment {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.not-updated-appointment .edit-icon {
+  color: #721c24;
+}
+

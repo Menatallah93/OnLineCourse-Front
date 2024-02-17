@@ -28,6 +28,7 @@ import { AllPenddingStudentRequestComponent } from './all-pendding-student-reque
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { UniveristyRequestComponent } from './univeristy-request/univeristy-request.component';
 import { AllUniveristyRequestsComponent } from './all-univeristy-requests/all-univeristy-requests.component';
+import { AllinstructorSubjectComponent } from './allinstructor-subject/allinstructor-subject.component';
 
 
 
@@ -51,14 +52,15 @@ const routes: Routes = [
   { path: "grades", component: GradeComponent },
   { path: "request", component: RequestComponent },
   { path: "inshomepage", component: InstuctorHomePageComponent },
+  { path: "allInstructorSubject" , component: AllinstructorSubjectComponent},
   { path: "addcourse", component: AddCoursesComponent },
   { path: "instractortable", component: InstractorTableComponent },
   { path: "addsubject", component: AddSubjectComponent },
   { path: "editubject/:id", component: AddSubjectComponent },
-  {path:"showrequests",component:AllRequestsComponent},
-  {path:"acceptedequests",component:AllAcceptedRequestsComponent},
-  {path:"penddingstudentrequest",component:AllPenddingStudentRequestComponent},
-  {path:"acceptedrequests",component:AllAcceptedRequestsComponent},
+  { path: "showrequests",component:AllRequestsComponent},
+  { path: "acceptedequests",component:AllAcceptedRequestsComponent},
+  { path: "penddingstudentrequest",component:AllPenddingStudentRequestComponent},
+  { path: "acceptedrequests",component:AllAcceptedRequestsComponent},
   { path: "subjects", component: SubjectsComponent },
   { path: "CourseRequest", component: CoursesRequestComponent },
   { path: "ConsultingRequest", component: ConsultingRequestComponent },

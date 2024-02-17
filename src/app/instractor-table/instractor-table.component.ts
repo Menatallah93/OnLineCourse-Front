@@ -60,7 +60,6 @@ export class InstractorTableComponent implements OnInit {
   addOrUpdateRow(row: any) {
     if (row.isEditing) {
       row.isAddMode = false;
-      // Update row and set isEditing to false
       this.instr.updateAppointmentForUser(row.customAppointmentId, {
         lectureDate: row.lectureDate,
         dayOfWeek: row.dayOfWeek

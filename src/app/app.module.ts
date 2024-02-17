@@ -35,8 +35,8 @@ import { AllPenddingStudentRequestComponent } from './all-pendding-student-reque
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { UniveristyRequestComponent } from './univeristy-request/univeristy-request.component';
 import { AllUniveristyRequestsComponent } from './all-univeristy-requests/all-univeristy-requests.component';
-
-
+import { AllinstructorSubjectComponent } from './allinstructor-subject/allinstructor-subject.component';
+import { CommonModule, DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -72,6 +72,7 @@ import { AllUniveristyRequestsComponent } from './all-univeristy-requests/all-un
     StudentProfileComponent,
     UniveristyRequestComponent,
     AllUniveristyRequestsComponent,
+    AllinstructorSubjectComponent,
 
   ],
 
@@ -81,10 +82,11 @@ import { AllUniveristyRequestsComponent } from './all-univeristy-requests/all-un
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    CommonModule,
   ],
 
 
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

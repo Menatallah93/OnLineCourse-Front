@@ -52,7 +52,17 @@
               </td>
               <td>
                 <span *ngIf="!row.isEditing">{{ row.dayOfWeek }}</span>
-                <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.dayOfWeek" class="form-control" />
+                <!-- <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.dayOfWeek" class="form-control" /> -->
+                <select *ngIf="row.isEditing" class="form-control" [(ngModel)]="row.dayOfWeek" required>
+                  <option style="font-size: 15px;" selected>اختر اليوم</option>
+                  <option style="font-size: 15px;" value="الاحد">الاحد</option>
+                  <option style="font-size: 15px;" value="الاثنين">الاثنين</option>
+                  <option style="font-size: 15px;" value="الثلاثاء">الثلاثاء</option>
+                  <option style="font-size: 15px;" value="الاربعاء">الاربعاء</option>
+                  <option style="font-size: 15px;" value="الخميس">الخميس</option>
+                  <option style="font-size: 15px;" value="الجمعه">الجمعه</option>
+                  <option style="font-size: 15px;" value="السبت">السبت</option>
+                </select>
               </td>
               <td>
                 <span *ngIf="!row.isEditing">{{ row.lectureDate }}</span>
