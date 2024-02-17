@@ -6,8 +6,11 @@ export interface InstructorSubject {
 }
 
 export interface Appointment {
+  id?:number;
   lectureDate: string;
   dayOfWeek: number;
+  isEditing?: boolean;
+  isUpdated?: boolean;
 }
 export interface IStudentRequestForInstructor {
   requestId: number;

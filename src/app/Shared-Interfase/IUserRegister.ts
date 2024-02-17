@@ -1,4 +1,5 @@
 import { TutorialType } from "./IConsulting";
+import { Appointment } from "./InstructorSubject";
 
 export interface IUserRegister{
     id?: number,
@@ -53,6 +54,18 @@ export interface tutorialDatas {
   tutorialType: TutorialType;
 }
 
+export interface IInstructorSubject{
+  name: string,
+  id: string;
+  subjectsAppointments: ISubjectAppointment[];
+}
+
+export interface ISubjectAppointment{
+  subjectsName: string,
+  appointments : Appointment[]
+}
 
 
+
+export { Appointment };
 

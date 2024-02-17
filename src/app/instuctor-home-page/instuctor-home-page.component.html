@@ -7,7 +7,7 @@
         <nav class="bottom-navbar" *ngIf="statusFlag === 1">
           <div class="container">
             <ul class="nav page-navigation">
-              <li class="nav-item" (click)="navigate('material')">
+              <li class="nav-item" (click)="navigate('allInstructorSubject')">
                 <a class="nav-link">
                   <i class="mdi mdi-contacts menu-icon"></i>
                   <span class="menu-title mx-2">المواد</span>
@@ -35,7 +35,9 @@
       <div *ngIf="navlink === 'request'">
         <app-request></app-request>
       </div>
-
+      <div *ngIf="navlink === 'allInstructorSubject'">
+        <app-allinstructor-subject ></app-allinstructor-subject>
+      </div>
       <div *ngIf="navlink === 'addcourse'">
         <app-add-courses></app-add-courses>
       </div>

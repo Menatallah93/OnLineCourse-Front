@@ -3,11 +3,30 @@
         <form (ngSubmit)="submit()" #courseForm="ngForm">
             <div class="form-group">
                 <label class="mb-2" for="subject">اختر المادة :</label>
+                <div *ngIf="isAdded == false">
+                    <div class="text-center">
+                        <span>
+                            <i class="fas fa-times-circle mx-2" style="font-size: 40px; color: red;"></i>
+                            <span style="font-size: 40px; margin-top: 10px; margin-left: 10px;">لم يتم إضافة
+                                المادة</span>
+                        </span>
+                    </div>
+                </div>
 
-                <div >
+                <div *ngIf="isAdded">
+                    <div class="text-center">
+                        <span>
+                            <i class="fas fa-check-circle" style="font-size: 48px; color: green;"></i>
+                            <span style="font-size: 40px; margin-top: 10px; margin-left: 10px;">تم إضافة المادة
+                                بنجاح</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div>
                     <select class="form-control" id="subject" [(ngModel)]="subject" name="subject">
                         <option *ngFor="let sub of allSubject" [ngValue]="sub">{{ sub.name }}</option>
-                      </select>
+                    </select>
                 </div>
             </div>
 
@@ -16,13 +35,14 @@
                     <div class="form-group col-md-6 col-lg-6">
                         <label for="daySelect">اختر اليوم</label>
                         <select class="form-control" name="day{{i}}" [(ngModel)]="row.dayOfWeek" required>
-                            <option value=0 >الاحد</option>
-                            <option value=1 >الاثنين</option>
-                            <option value=2 >الثلاثاء</option>
-                            <option value=3 >الاربعاء</option>
+                            <option value=0>اختر اليوم</option>
+                            <option value=0>الاحد</option>
+                            <option value=1>الاثنين</option>
+                            <option value=2>الثلاثاء</option>
+                            <option value=3>الاربعاء</option>
                             <option value=4>الخميس</option>
-                            <option value=5 >الجمعه</option>
-                            <option value=6 >السبت</option>
+                            <option value=5>الجمعه</option>
+                            <option value=6>السبت</option>
                         </select>
                     </div>
 
@@ -38,36 +58,8 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleCalsultModal">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
 </div>
-
-    <div *ngIf="isAdded" class="modal fade" id="exampleCalsultModal" tabindex="-1" aria-labelledby="exampleCalsultModalLabel" aria-hidden="true"
-      (hidden)="courseForm.form.markAsPristine()">
-          <div class="modal-dialog modal-dialog-centered modal-lg">
-          <div class="modal-content">
-            <div class="modal-body" style="padding-top: 40px;">
-              <div class="text-center">
-                <i class="fas fa-check-circle" style="font-size: 48px; color: green;"></i>
-                <h1 style="margin-top: 10px;">تم إضافة المادة بنجاح</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    <div *ngIf="!isAdded" class="modal fade" id="exampleCalsultModal" tabindex="-1" aria-labelledby="exampleCalsultModalLabel" aria-hidden="true">
-    
-          <div class="modal-dialog modal-dialog-centered modal-lg">
-          <div class="modal-content">
-            <div class="modal-body" style="padding-top: 40px;">
-              <div class="text-center">
-                <i class="fas fa-times-circle" style="font-size: 48px; color: red;"></i>
-                <h1 style="margin-top: 10px;">لم يتم إضافة المادة</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>

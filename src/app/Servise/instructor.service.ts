@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map, throwError } from 'rxjs';
 
 import { IStudentRequestForInstructor, InstructorSubject } from '../Shared-Interfase/InstructorSubject';
-import { IInstructorProfile } from '../Shared-Interfase/IUserRegister';
+import { IInstructorProfile, IInstructorSubject } from '../Shared-Interfase/IUserRegister';
 
 @Injectable({
   providedIn: 'root'
@@ -107,6 +107,13 @@ export class InstructorService {
       }));
   }
 
+  GetAllSubjectToInstructor(id: any): Observable<IInstructorSubject> {
+    return this.http.get<IInstructorSubject>(`${this.apiUrl}/Instructor/GetInstructorSubjectandAppointment/${id}`)
+      .pipe(catchError((err) => {
+        return throwError(() => err.message || "server error");
+      }));
+  }
+
 
   UpdateInstructor(id: any, updatedData: any): Observable<IInstructorProfile> {
 
@@ -124,5 +131,12 @@ export class InstructorService {
       }));
   }
 
+
+  updateAppointmentForInstructor(id: any, newAppointment: any): Observable<IInstructorProfile> {
+    return this.http.put<IInstructorProfile>(`http://localhost:5112/api/Instructor/EditInstructorAppointment/${id}`, newAppointment)
+      .pipe(catchError((err) => {
+        return throwError(() => err.message || "server error");
+      }));
+  }
 
 }

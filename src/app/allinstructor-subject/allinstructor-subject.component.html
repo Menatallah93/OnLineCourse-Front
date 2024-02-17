@@ -1,0 +1,35 @@
+<div>
+    <h1 class="text-center my-3">{{Instractordata.name}}</h1>
+</div>
+<div class="card-container">
+    <div class="card" *ngFor="let item of Instractordata.subjectsAppointments">
+        <div class="subject">
+            <span>
+                <h3>الماده:</h3>
+                <h2>{{item.subjectsName}}</h2>
+            </span>
+            <h5>المواعيد: </h5>
+            <ul>
+                <li *ngFor="let app of item.appointments" class="edit-item" [ngClass]="{ 'updated-appointment': app.isUpdated }">
+                  <span *ngIf="!app.isEditing" class="text-item">
+                    <strong style="margin: 0px 5px;">{{app.dayOfWeek}}</strong> - {{app.lectureDate}}
+                  </span>
+                  <span *ngIf="app.isEditing" class="edit-input">
+                    <select class="form-control" [(ngModel)]="app.dayOfWeek" required>
+                      <option selected>اختر اليوم</option>
+                      <option value="الاحد">الاحد</option>
+                      <option value="الاثنين">الاثنين</option>
+                      <option value="الثلاثاء">الثلاثاء</option>
+                      <option value="الاربعاء">الاربعاء</option>
+                      <option value="الخميس">الخميس</option>
+                      <option value="الجمعه">الجمعه</option>
+                      <option value="السبت">السبت</option>
+                    </select>
+                    <input type="text" [(ngModel)]="app.lectureDate" class="form-control">
+                  </span>
+                  <a (click)="toggleEditMode(app)" class="edit-icon"><i class="fa fa-edit"></i></a>
+                </li>
+              </ul>
+        </div>
+    </div>
+</div>
